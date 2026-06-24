@@ -1,281 +1,450 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react'
 
-const Home = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const W = 'wrap'
+const MONO = 'font-mono text-xs uppercase tracking-[.06em]'
+const LIME = 'text-[#84b026]'
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+function useReveal() {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { el.style.animation = 'reveal-up .8s cubic-bezier(.2,.7,.2,1) forwards'; io.disconnect() } },
+      { threshold: 0.1 }
+    )
+    el.style.opacity = '0'
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+  return ref
+}
 
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
+function Reveal({ children, className = '' }) {
+  const ref = useReveal()
+  return <div ref={ref} className={className} style={{ opacity: 0 }}>{children}</div>
+}
+
+export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="font-sans bg-dark text-white">
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-dark/90 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <a href="/" className="text-xl sm:text-2xl font-extrabold">
-              Eventify<span className="text-primary">Lab</span>
+    <div style={{ fontFamily: 'var(--sans)', background: 'var(--bg)', color: 'var(--fg)' }}>
+
+      {/* NAV */}
+      <nav style={{ position: 'sticky', top: 0, zIndex: 60, background: 'rgba(15,22,34,.86)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--line)' }}>
+        <div className={W} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 70 }}>
+          <a href="/" style={{ fontWeight: 700, fontSize: 20, letterSpacing: '-.01em', display: 'flex', alignItems: 'center', gap: 9 }}>
+            <span style={{ width: 12, height: 12, background: 'var(--lime)', display: 'inline-block' }} />
+            EVENTIFY LAB
+          </a>
+
+          {/* desktop links */}
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }} className="hidden md:flex">
+            <NavLink href="#solucoes">Soluções</NavLink>
+            <NavLink href="#jornada">Jornada</NavLink>
+            <NavLink href="#planos">Planos</NavLink>
+            <NavLink href="/login">Login</NavLink>
+            <a href="#contato" style={{ border: '1px solid var(--lime)', color: 'var(--lime)', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.05em', padding: '9px 14px', transition: '.25s', whiteSpace: 'nowrap' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--lime)'; e.currentTarget.style.color = 'var(--navy)' }}
+              onMouseLeave={e => { e.currentTarget.style.background = ''; e.currentTarget.style.color = 'var(--lime)' }}>
+              Gamificar stand ↗
             </a>
-
-            {/* Desktop Menu */}
-            <ul className="hidden md:flex items-center gap-8">
-              <li><a href="#services" className="text-gray-300 hover:text-primary transition-colors text-sm font-medium">Servicos</a></li>
-              <li><a href="#about" className="text-gray-300 hover:text-primary transition-colors text-sm font-medium">Sobre</a></li>
-              <li><a href="#contact" className="text-gray-300 hover:text-primary transition-colors text-sm font-medium">Contato</a></li>
-              <li><a href="/login" className="text-gray-300 hover:text-primary transition-colors text-sm font-medium">Login</a></li>
-              <li>
-                <a href="#contact" className="bg-primary hover:bg-primary-light text-dark px-5 py-2.5 rounded-lg font-semibold text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/30">
-                  Fale Conosco
-                </a>
-              </li>
-            </ul>
-
-            {/* Mobile Menu Button */}
-            <button onClick={toggleMobileMenu} className="md:hidden text-white text-2xl">
-              &#9776;
-            </button>
           </div>
+
+          {/* mobile toggle */}
+          <button className="md:hidden" onClick={() => setMenuOpen(o => !o)} style={{ background: 'none', border: 'none', color: 'var(--fg)', fontSize: 22, cursor: 'pointer' }}>☰</button>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`${mobileMenuOpen ? '' : 'hidden'} md:hidden bg-dark-lighter border-t border-white/5`}>
-          <div className="px-4 py-4 space-y-3">
-            <a href="#services" onClick={closeMobileMenu} className="block text-gray-300 hover:text-primary py-2">Servicos</a>
-            <a href="#about" onClick={closeMobileMenu} className="block text-gray-300 hover:text-primary py-2">Sobre</a>
-            <a href="#contact" onClick={closeMobileMenu} className="block text-gray-300 hover:text-primary py-2">Contato</a>
-            <a href="/login" onClick={closeMobileMenu} className="block text-gray-300 hover:text-primary py-2">Login</a>
-            <a href="#contact" onClick={closeMobileMenu} className="block bg-primary text-dark text-center py-3 rounded-lg font-semibold mt-4">Fale Conosco</a>
+        {menuOpen && (
+          <div style={{ borderTop: '1px solid var(--line)', padding: '16px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {[['#solucoes', 'Soluções'], ['#jornada', 'Jornada'], ['#planos', 'Planos'], ['/login', 'Login']].map(([h, l]) => (
+              <a key={h} href={h} onClick={() => setMenuOpen(false)} style={{ color: 'var(--muted)', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.05em', padding: '8px 0' }}>{l}</a>
+            ))}
+            <a href="#contato" onClick={() => setMenuOpen(false)} style={{ background: 'var(--lime)', color: 'var(--navy)', fontWeight: 700, textAlign: 'center', padding: '12px', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.05em', marginTop: 8 }}>
+              Gamificar stand ↗
+            </a>
           </div>
-        </div>
+        )}
       </nav>
 
-      {/* Hero */}
-      <section className="min-h-screen flex items-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        {/* Background Glow */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-radial from-primary/15 to-transparent pointer-events-none hidden lg:block"></div>
-
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Content */}
-            <div className="text-center lg:text-left order-1">
-              <span className="inline-block px-4 py-2 bg-primary/10 border border-primary/30 rounded-full text-xs sm:text-sm font-semibold text-primary mb-4 sm:mb-6">
-                Inovacao em Eventos
-              </span>
-
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-4 sm:mb-6">
-                Transformamos
-                <span className="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent"> ideias </span>
-                em experiencias memoraveis
-              </h1>
-
-              <p className="text-gray-400 text-base sm:text-lg mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
-                Somos especialistas em criar eventos unicos que conectam pessoas, marcas e historias. Do conceito a execucao, cada detalhe e pensado para surpreender.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
-                <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-dark px-6 py-3.5 rounded-lg font-semibold transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30">
-                  Iniciar Projeto
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </a>
-                <a href="#services" className="inline-flex items-center justify-center border-2 border-gray-600 hover:border-primary text-white hover:text-primary px-6 py-3.5 rounded-lg font-medium transition-all">
-                  Ver Servicos
-                </a>
-              </div>
-            </div>
-
-            {/* Visual - Hidden on mobile */}
-            <div className="hidden lg:block order-2 relative h-[450px]">
-              <div className="absolute top-0 left-0 w-56 bg-dark-card border border-white/10 rounded-2xl p-5 animate-float">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-2xl mb-3">&#127919;</div>
-                <h4 className="font-semibold mb-1">Estrategia</h4>
-                <p className="text-sm text-gray-500">Planejamento personalizado para cada projeto</p>
-              </div>
-
-              <div className="absolute top-1/3 right-0 w-52 bg-dark-card border border-white/10 rounded-2xl p-5 animate-float-delay-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-2xl mb-3">&#10024;</div>
-                <h4 className="font-semibold mb-1">Criatividade</h4>
-                <p className="text-sm text-gray-500">Conceitos unicos que impressionam</p>
-              </div>
-
-              <div className="absolute bottom-0 left-1/4 w-60 bg-dark-card border border-white/10 rounded-2xl p-5 animate-float-delay-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-2xl mb-3">&#128640;</div>
-                <h4 className="font-semibold mb-1">Execucao</h4>
-                <p className="text-sm text-gray-500">Entrega impecavel em cada detalhe</p>
-              </div>
-            </div>
+      {/* HERO */}
+      <header style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--muted)', padding: '14px 0', borderBottom: '1px solid var(--line)', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            <span>Experiências interativas &amp; gamificação</span>
+            <span className="hidden sm:block">Para stands de feira</span>
           </div>
-        </div>
-      </section>
 
-      {/* Services */}
-      <section id="services" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-dark via-dark-lighter to-dark">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-10 sm:mb-16">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full text-xs font-semibold text-primary uppercase tracking-wider mb-3">
-              O que fazemos
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-3 sm:mb-4">Nossos Servicos</h2>
-            <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
-              Solucoes interativas que engajam, captam leads e geram resultados
+          <h1 style={{ fontWeight: 500, fontSize: 'clamp(42px,8vw,124px)', lineHeight: .92, letterSpacing: '-.03em', padding: '50px 0 34px' }}>
+            GAMIFICAÇÃO<br />
+            <span style={{ WebkitTextStroke: '1.4px var(--fg)', color: 'transparent' }}>PARA O SEU</span>{' '}
+            <span style={{ color: 'var(--lime)' }}>STAND.</span>
+          </h1>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 40, borderTop: '1px solid var(--line)', padding: '34px 0 48px', alignItems: 'end' }}>
+            <p style={{ fontSize: 19, color: '#c4ccd6', maxWidth: 540 }}>
+              Pontuação, rankings e recompensas aplicados ao seu stand — mais visitantes, mais engajamento e leads qualificados a cada partida.
             </p>
-          </div>
-
-          {/* Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {/* Card 1 */}
-            <div className="group bg-dark-card border border-white/5 rounded-2xl p-5 sm:p-6 transition-all hover:-translate-y-2 hover:border-primary/20 hover:shadow-2xl hover:shadow-black/50 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-light scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-              <span className="text-xs font-bold text-primary">01</span>
-              <div className="text-4xl my-3">&#127904;</div>
-              <h3 className="text-lg font-bold mb-2">Roleta de Premios</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">Sistema de cadastro + roleta interativa na tela. O participante se cadastra e gira para ganhar brindes na hora.</p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="group bg-dark-card border border-white/5 rounded-2xl p-5 sm:p-6 transition-all hover:-translate-y-2 hover:border-primary/20 hover:shadow-2xl hover:shadow-black/50 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-light scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-              <span className="text-xs font-bold text-primary">02</span>
-              <div className="text-4xl my-3">&#127915;</div>
-              <h3 className="text-lg font-bold mb-2">Sorteios com QR Code</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">Cadastro via QR Code durante o evento e sorteio ao vivo no final. Simples para o participante, poderoso para captar dados.</p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="group bg-dark-card border border-white/5 rounded-2xl p-5 sm:p-6 transition-all hover:-translate-y-2 hover:border-primary/20 hover:shadow-2xl hover:shadow-black/50 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-light scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-              <span className="text-xs font-bold text-primary">03</span>
-              <div className="text-4xl my-3">&#128242;</div>
-              <h3 className="text-lg font-bold mb-2">Captacao de Leads</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">Sistemas de cadastro otimizados que coletam dados do publico e entregam leads quentes direto no WhatsApp.</p>
-            </div>
-
-            {/* Card 4 */}
-            <div className="group bg-dark-card border border-white/5 rounded-2xl p-5 sm:p-6 transition-all hover:-translate-y-2 hover:border-primary/20 hover:shadow-2xl hover:shadow-black/50 relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary-light scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-              <span className="text-xs font-bold text-primary">04</span>
-              <div className="text-4xl my-3">&#127918;</div>
-              <h3 className="text-lg font-bold mb-2">Ativacoes Gamificadas</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">Transformamos a experiencia do publico em jogo. Dinamicas interativas que criam memorias positivas.</p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+              <BtnFill href="#contato">Gamificar stand ↗</BtnFill>
+              <BtnLine href="#planos">Ver planos</BtnLine>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary">16+</div>
-              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider mt-1">Eventos Realizados</div>
+        <div style={{ height: 'clamp(280px,40vw,460px)', borderTop: '1px solid var(--line)', position: 'relative', overflow: 'hidden', background: 'repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 2px,transparent 2px 12px), linear-gradient(120deg,#1d2840,#217373)', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: 22 }}>
+          <span style={{ fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.06em', color: 'rgba(255,255,255,.55)' }}>[ imagem — participante no totem ]</span>
+          <span style={{ fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.06em', color: 'rgba(255,255,255,.55)' }}>1320×460</span>
+        </div>
+      </header>
+
+      {/* TICKER */}
+      <div style={{ background: 'var(--lime)', color: 'var(--navy)', overflow: 'hidden', padding: '12px 0', borderBottom: '1px solid var(--line)' }}>
+        <div style={{ display: 'flex', gap: 48, whiteSpace: 'nowrap', animation: 'ticker-slide 26s linear infinite', fontFamily: 'var(--mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 700 }}>
+          {[1, 2].map(i => (
+            <span key={i}>Cadastro ✦ Quiz ✦ Roleta de prêmios ✦ Jogo da memória ✦ Raspadinha ✦ Pesquisa de opinião ✦&nbsp;</span>
+          ))}
+        </div>
+      </div>
+
+      {/* STATS */}
+      <section style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <Reveal>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', borderTop: '1px solid var(--line)' }}>
+              {[
+                ['Mais visitantes', 'o jogo atrai gente'],
+                ['Engajamento orgânico', 'param, jogam, voltam'],
+                ['Captação de leads', 'dados a cada partida'],
+                ['Conhecimento do produto', 'o quiz ensina'],
+              ].map(([big, sub], i) => (
+                <div key={i} style={{ borderRight: i < 3 ? '1px solid var(--line)' : 'none', padding: '40px 26px' }}>
+                  <div style={{ fontWeight: 500, fontSize: 'clamp(17px,2vw,26px)', letterSpacing: '-.02em', lineHeight: 1.05 }}>
+                    {big.split(' ').map((w, j, arr) =>
+                      j === arr.length - 1
+                        ? <span key={j} style={{ color: 'var(--lime)' }}>{w}</span>
+                        : <span key={j}>{w} </span>
+                    )}
+                  </div>
+                  <p style={{ color: 'var(--muted)', fontSize: 13.5, marginTop: 12, fontFamily: 'var(--mono)', textTransform: 'uppercase', letterSpacing: '.04em' }}>{sub}</p>
+                </div>
+              ))}
             </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary">25k+</div>
-              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider mt-1">Participantes</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary">25k+</div>
-              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider mt-1">Leads Gerados</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary">3+</div>
-              <div className="text-xs sm:text-sm text-gray-500 uppercase tracking-wider mt-1">Anos Experiencia</div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Content */}
-            <div className="order-2 lg:order-1">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-4 sm:mb-6">
-                Por que escolher a <span className="text-primary">Eventify Lab</span>?
+      {/* SOLUTIONS */}
+      <section id="solucoes" style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <Reveal>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0', color: 'var(--muted)', borderBottom: '1px solid var(--line)', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <span>[ 01 ] Soluções</span><span>04 objetivos</span>
+            </div>
+            <h2 style={{ fontWeight: 500, fontSize: 'clamp(30px,4.4vw,56px)', lineHeight: 1.02, letterSpacing: '-.02em', padding: '48px 0 12px', maxWidth: '18ch' }}>
+              Uma experiência, quatro objetivos de marketing e comercial.
+            </h2>
+          </Reveal>
+          <Reveal>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)' }}>
+              {[
+                ['/01', 'Ativação de marca', 'Faça o público viver a mensagem, em vez de só ouvi-la.'],
+                ['/02', 'Geração de leads qualificados', 'Dados captados com perguntas-chave para o comercial achar os leads mais quentes.'],
+                ['/03', 'Distribuição de brindes', 'Mecânicas de prêmios que organizam quem ganha, o quê e quando — sem filas.'],
+                ['/04', 'Pesquisas de opinião', 'Coleta opiniões de um jeito leve e não invasivo.'],
+              ].map(([n, title, desc], i) => (
+                <SvcCard key={i} n={n} title={title} desc={desc} isRight={i % 2 === 0} />
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* JOURNEY */}
+      <section id="jornada" style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <Reveal>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0', color: 'var(--muted)', borderBottom: '1px solid var(--line)', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <span>[ 02 ] A jornada</span><span>celular / totem</span>
+            </div>
+            <h2 style={{ fontWeight: 500, fontSize: 'clamp(30px,4.4vw,56px)', lineHeight: 1.02, letterSpacing: '-.02em', padding: '48px 0 12px', maxWidth: '18ch' }}>
+              Do cadastro ao prêmio, em poucos toques.
+            </h2>
+          </Reveal>
+          <Reveal>
+            {[
+              ['01', 'Cadastro', 'Pelo celular (QR Code/link) ou pelo totem. Coletamos os dados que importam para marketing e comercial.'],
+              ['02', 'Quiz', 'Perguntas sobre a marca e os produtos. Educa o público e mede o nível dos leads.'],
+              ['03', 'Roleta', 'Sorteio de brindes integrado ao fluxo, distribuído de forma organizada e divertida.'],
+            ].map(([n, title, desc]) => (
+              <ProcRow key={n} n={n} title={title} desc={desc} />
+            ))}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, padding: '30px 0 6px' }}>
+              {['Jogo da memória', 'Raspadinha', 'Pesquisa de opinião', 'Painel de registro de leads', 'Controle de entrega de prêmios'].map(c => (
+                <span key={c} style={{ fontFamily: 'var(--mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '.05em', color: 'var(--muted)', border: '1px solid var(--line)', padding: '8px 13px' }}>{c}</span>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PLANS */}
+      <section id="planos" style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <Reveal>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0', color: 'var(--muted)', borderBottom: '1px solid var(--line)', fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <span>[ 03 ] Planos</span><span>03 níveis</span>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)' }}>
+              <PlanCard
+                name="Flash"
+                tagline="Pronto para ativar — rápido e econômico."
+                price="R$3.250"
+                period="/evento"
+                items={['Cadastro + Quiz + Roleta', 'Estrutura pronta', 'Visual white label', 'Configuração rápida']}
+                ideal="Orçamento reduzido / ativação imediata"
+                isRight
+              />
+              <PlanCard
+                name="Studio"
+                badge="Mais escolhido"
+                tagline="Equilíbrio entre custo e personalização."
+                price="R$5.980"
+                period="/evento"
+                items={['Módulos prontos, à sua escolha', 'Fluxo adaptável', 'Identidade visual da marca', 'Entrega rápida']}
+                ideal="Ações promocionais / captação em feira"
+                featured
+                isRight
+              />
+              <PlanCard
+                name="Signature"
+                tagline="Experiência 100% sob medida."
+                price="R$9.200"
+                period="a partir de"
+                items={['Desenvolvimento personalizado', 'Mecânicas exclusivas, fluxo livre', 'UX/UI sob medida', 'Integração com ativação de marca']}
+                ideal="Grandes lançamentos / ativações premium"
+              />
+            </div>
+            <p style={{ fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.05em', color: 'var(--muted)', padding: '22px 0 4px', textAlign: 'center' }}>
+              Todos incluem treinamento da equipe e suporte durante o evento
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ETAPAS */}
+      <section style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <Reveal>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)' }}>
+              {[
+                ['[ Antes do evento ]', 'Planejamento', 'Entendemos o objetivo, definimos a solução e aplicamos a identidade da marca. Configuramos as mecânicas (quiz, prêmios, chances) e treinamos a equipe na plataforma.'],
+                ['[ Durante o evento ]', 'Operação & dados', 'Suporte técnico no dia para uma experiência fluida. Ao final, relatórios com leads gerados, desempenho no quiz e brindes distribuídos.'],
+              ].map(([lab, h3, p], i) => (
+                <div key={i} style={{ borderRight: i === 0 ? '1px solid var(--line)' : 'none', borderTop: '1px solid var(--line)', padding: '40px 30px' }}>
+                  <div style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--lime)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 16 }}>{lab}</div>
+                  <h3 style={{ fontWeight: 600, fontSize: 24, marginBottom: 12 }}>{h3}</h3>
+                  <p style={{ color: 'var(--muted)', fontSize: 15 }}>{p}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* QUOTE */}
+      <section style={{ borderBottom: '1px solid var(--line)' }}>
+        <div className={W}>
+          <Reveal>
+            <blockquote style={{ fontWeight: 500, fontSize: 'clamp(28px,4.2vw,52px)', lineHeight: 1.1, letterSpacing: '-.02em', padding: '60px 0 24px', maxWidth: '22ch' }}>
+              "Em vez de só ouvir a mensagem, o visitante{' '}
+              <span style={{ color: 'var(--lime)' }}>joga</span> a mensagem."
+            </blockquote>
+            <p style={{ fontFamily: 'var(--mono)', fontSize: 13, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '.05em', paddingBottom: 60 }}>
+              — Eventify Lab / Experiências interativas &amp; gamificação
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="contato">
+        <div className={W}>
+          <Reveal>
+            <div style={{ padding: '96px 0', textAlign: 'center' }}>
+              <p style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--lime)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 22 }}>[ Vamos conversar ]</p>
+              <h2 style={{ fontWeight: 500, fontSize: 'clamp(34px,5.4vw,76px)', letterSpacing: '-.03em', lineHeight: .98, marginBottom: 36 }}>
+                VAI EXPOR EM<br />
+                UMA <span style={{ WebkitTextStroke: '1.4px var(--fg)', color: 'transparent' }}>FEIRA?</span>
               </h2>
-              <div className="space-y-4 text-gray-400 text-base sm:text-lg">
-                <p>Nascemos da paixao por criar momentos inesqueciveis. Nossa equipe combina criatividade, tecnologia e expertise em gestao para entregar eventos que superam expectativas.</p>
-                <p>Cada projeto e um laboratorio de ideias onde experimentamos, inovamos e criamos experiencias unicas. Do briefing ao pos-evento, acompanhamos cada etapa com dedicacao total.</p>
-                <p>Acreditamos que eventos sao pontes que conectam pessoas, marcas e historias. E nos construimos essas pontes com excelencia.</p>
+              <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a href="mailto:divulgacao@eventifylab.com.br"
+                  style={{ fontFamily: 'var(--mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '.05em', padding: '15px 24px', display: 'inline-flex', gap: 10, alignItems: 'center', background: 'var(--lime)', color: 'var(--navy)', border: '1px solid var(--lime)', fontWeight: 700, transition: '.25s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'var(--fg)'; e.currentTarget.style.borderColor = 'var(--fg)' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'var(--lime)'; e.currentTarget.style.borderColor = 'var(--lime)' }}>
+                  Gamificar meu stand ↗
+                </a>
+                <a href="https://wa.me/5519981442580?text=Gostaria de mais informacoes sobre EventifyLab."
+                  style={{ fontFamily: 'var(--mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '.05em', padding: '15px 24px', display: 'inline-flex', gap: 10, alignItems: 'center', border: '1px solid var(--line)', transition: '.25s' }}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--fg)'}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--line)'}>
+                  WhatsApp
+                </a>
               </div>
             </div>
-
-            {/* Visual */}
-            <div className="order-1 lg:order-2">
-              <div className="bg-gradient-to-br from-dark-card to-dark-lighter border border-white/10 rounded-3xl h-64 sm:h-80 lg:h-96 flex flex-col items-center justify-center relative overflow-hidden">
-                <div className="absolute w-48 h-48 bg-primary/20 rounded-full animate-pulse-glow"></div>
-                <div className="text-5xl sm:text-6xl relative z-10">&#128300;</div>
-                <span className="text-primary font-semibold mt-3 relative z-10 text-sm sm:text-base">Laboratorio de experiencias</span>
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-primary/5 to-transparent">
-        <div className="max-w-2xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full text-xs font-semibold text-primary uppercase tracking-wider mb-3">
-            Vamos conversar
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-3 sm:mb-4">
-            Pronto para criar algo incrivel?
-          </h2>
-          <p className="text-gray-400 text-base sm:text-lg mb-6 sm:mb-8">
-            Entre em contato e vamos transformar sua ideia em um evento memoravel.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <a href="mailto:divulgacao@eventifylab.com.br" className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-dark px-6 py-3.5 rounded-lg font-semibold transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              Enviar E-mail
+      {/* FOOTER */}
+      <footer style={{ padding: '54px 0 40px', borderTop: '1px solid var(--line)' }}>
+        <div className={W}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr', gap: 30, flexWrap: 'wrap' }}>
+            <a href="/" style={{ fontWeight: 700, fontSize: 20, display: 'flex', alignItems: 'center', gap: 9 }}>
+              <span style={{ width: 12, height: 12, background: 'var(--lime)', display: 'inline-block' }} />
+              EVENTIFY LAB
             </a>
-            <a href="https://wa.me/5519981442580?text=Gostaria de mais informacoes sobre EventifyLab." className="inline-flex items-center justify-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-dark px-6 py-3.5 rounded-lg font-semibold transition-all">
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              WhatsApp
-            </a>
+            <FootCol title="Soluções" links={[['#solucoes', 'Ativação de marca'], ['#solucoes', 'Geração de leads'], ['#solucoes', 'Brindes & pesquisas']]} />
+            <FootCol title="Planos" links={[['#planos', 'Flash'], ['#planos', 'Studio'], ['#planos', 'Signature']]} />
+            <FootCol title="Contato" links={[['mailto:divulgacao@eventifylab.com.br', 'divulgacao@eventifylab.com.br'], ['https://wa.me/5519981442580', 'WhatsApp'], ['#', 'LinkedIn']]} />
           </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 border-t border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-            <a href="/" className="text-xl font-extrabold">
-              Eventify<span className="text-primary">Lab</span>
-            </a>
-
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-              <a href="#services" className="text-gray-500 hover:text-primary text-sm transition-colors">Servicos</a>
-              <a href="#about" className="text-gray-500 hover:text-primary text-sm transition-colors">Sobre</a>
-              <a href="#contact" className="text-gray-500 hover:text-primary text-sm transition-colors">Contato</a>
-              <a href="#" className="text-gray-500 hover:text-primary text-sm transition-colors">Instagram</a>
-              <a href="#" className="text-gray-500 hover:text-primary text-sm transition-colors">LinkedIn</a>
-            </div>
-
-            <p className="text-gray-500 text-xs sm:text-sm">
-              &copy; 2026 Eventify Lab. Todos os direitos reservados.
-            </p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 46, paddingTop: 22, borderTop: '1px solid var(--line)', fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--muted)', flexWrap: 'wrap', gap: 8 }}>
+            <span>© 2026 EVENTIFY LAB</span>
+            <span>EXPERIÊNCIAS INTERATIVAS &amp; GAMIFICAÇÃO</span>
           </div>
         </div>
       </footer>
-    </div>
-  );
-};
 
-export default Home;
+    </div>
+  )
+}
+
+function NavLink({ href, children }) {
+  return (
+    <a href={href} style={{ fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.05em', color: 'var(--muted)', padding: '9px 14px', transition: 'color .2s' }}
+      onMouseEnter={e => e.currentTarget.style.color = 'var(--fg)'}
+      onMouseLeave={e => e.currentTarget.style.color = 'var(--muted)'}>
+      {children}
+    </a>
+  )
+}
+
+function BtnFill({ href, children }) {
+  return (
+    <a href={href} style={{ fontFamily: 'var(--mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '.05em', padding: '15px 24px', display: 'inline-flex', gap: 10, alignItems: 'center', background: 'var(--lime)', color: 'var(--navy)', border: '1px solid var(--lime)', fontWeight: 700, transition: '.25s' }}
+      onMouseEnter={e => { e.currentTarget.style.background = 'var(--fg)'; e.currentTarget.style.borderColor = 'var(--fg)' }}
+      onMouseLeave={e => { e.currentTarget.style.background = 'var(--lime)'; e.currentTarget.style.borderColor = 'var(--lime)' }}>
+      {children}
+    </a>
+  )
+}
+
+function BtnLine({ href, children }) {
+  return (
+    <a href={href} style={{ fontFamily: 'var(--mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '.05em', padding: '15px 24px', display: 'inline-flex', gap: 10, alignItems: 'center', border: '1px solid var(--line)', transition: '.25s' }}
+      onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--fg)'}
+      onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--line)'}>
+      {children}
+    </a>
+  )
+}
+
+function SvcCard({ n, title, desc, isRight }) {
+  const [hov, setHov] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        borderRight: isRight ? '1px solid var(--line)' : 'none',
+        borderTop: '1px solid var(--line)',
+        padding: '34px 28px 30px',
+        minHeight: 220,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        transition: 'background .3s',
+        background: hov ? 'var(--navy-2)' : 'transparent',
+      }}>
+      <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--lime)' }}>{n}</span>
+      <h3 style={{ fontWeight: 600, fontSize: 26, letterSpacing: '-.01em', marginTop: 24 }}>{title}</h3>
+      <p style={{ color: 'var(--muted)', fontSize: 14.5, marginTop: 12 }}>{desc}</p>
+    </div>
+  )
+}
+
+function ProcRow({ n, title, desc }) {
+  const [hov, setHov] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '90px 1fr 1.2fr',
+        gap: 30,
+        padding: `34px ${hov ? '14px' : '0px'} 34px`,
+        borderTop: '1px solid var(--line)',
+        alignItems: 'baseline',
+        transition: 'padding .3s',
+      }}>
+      <span style={{ fontFamily: 'var(--mono)', fontSize: 14, color: 'var(--lime)' }}>{n}</span>
+      <h3 style={{ fontWeight: 500, fontSize: 'clamp(24px,3vw,38px)', letterSpacing: '-.01em' }}>{title}</h3>
+      <p style={{ color: 'var(--muted)', fontSize: 16 }}>{desc}</p>
+    </div>
+  )
+}
+
+function PlanCard({ name, badge, tagline, price, period, items, ideal, featured, isRight }) {
+  const [hov, setHov] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        borderRight: isRight ? '1px solid var(--line)' : 'none',
+        borderTop: '1px solid var(--line)',
+        padding: '34px 28px 32px',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'background .3s',
+        background: hov || featured ? 'var(--navy-2)' : 'transparent',
+      }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h3 style={{ fontWeight: 600, fontSize: 28 }}>{name}</h3>
+        {badge && <span style={{ fontFamily: 'var(--mono)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '.06em', color: 'var(--navy)', background: 'var(--lime)', padding: '5px 9px', fontWeight: 700 }}>{badge}</span>}
+      </div>
+      <p style={{ color: 'var(--muted)', fontSize: 14, margin: '10px 0 20px', minHeight: 40 }}>{tagline}</p>
+      <div style={{ fontWeight: 500, fontSize: 40, letterSpacing: '-.02em' }}>
+        {price} <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--muted)', letterSpacing: 0 }}>{period}</span>
+      </div>
+      <ul style={{ listStyle: 'none', margin: '22px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {items.map(item => (
+          <li key={item} style={{ fontSize: 14, color: '#c4ccd6', paddingLeft: 18, position: 'relative' }}>
+            <span style={{ position: 'absolute', left: 0, color: 'var(--lime)' }}>+</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+      <p style={{ fontFamily: 'var(--mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '.04em', color: 'var(--muted)', marginTop: 'auto', paddingTop: 18, borderTop: '1px solid var(--line)' }}>{ideal}</p>
+    </div>
+  )
+}
+
+function FootCol({ title, links }) {
+  return (
+    <div>
+      <h4 style={{ fontFamily: 'var(--mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--muted)', marginBottom: 16 }}>{title}</h4>
+      {links.map(([href, label]) => (
+        <a key={label} href={href} style={{ display: 'block', fontSize: 15, marginBottom: 9, color: '#c4ccd6', transition: 'color .2s' }}
+          onMouseEnter={e => e.currentTarget.style.color = 'var(--lime)'}
+          onMouseLeave={e => e.currentTarget.style.color = '#c4ccd6'}>
+          {label}
+        </a>
+      ))}
+    </div>
+  )
+}
