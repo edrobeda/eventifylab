@@ -418,8 +418,8 @@ function PlanCard({ name, badge, tagline, price, period, items, ideal, featured,
         {badge && <span style={{ fontFamily: 'var(--mono)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '.06em', color: 'var(--navy)', background: 'var(--lime)', padding: '5px 9px', fontWeight: 700 }}>{badge}</span>}
       </div>
       <p style={{ color: 'var(--muted)', fontSize: 14, margin: '10px 0 20px', minHeight: 40 }}>{tagline}</p>
-      <div style={{ fontWeight: 500, fontSize: 40, letterSpacing: '-.02em' }}>
-        {price} <span style={{ fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--muted)', letterSpacing: 0 }}>{period}</span>
+      <div style={{ fontFamily: 'var(--mono)', fontSize: 12, textTransform: 'uppercase', letterSpacing: '.08em', color: 'var(--muted)', padding: '12px 0' }}>
+        Consulte valores
       </div>
       <ul style={{ listStyle: 'none', margin: '22px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {items.map(item => (
