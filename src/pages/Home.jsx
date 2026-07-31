@@ -287,7 +287,7 @@ export default function Home() {
                   onMouseLeave={e => { e.currentTarget.style.background = 'var(--lime)'; e.currentTarget.style.borderColor = 'var(--lime)' }}>
                   Gamificar meu stand ↗
                 </a>
-                <a href="https://wa.me/5519981442580?text=Gostaria de mais informacoes sobre EventifyLab."
+                <a href="https://wa.me/5519992520470?text=Gostaria de mais informacoes sobre EventifyLab."
                   style={{ fontFamily: 'var(--mono)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '.05em', padding: '15px 24px', display: 'inline-flex', gap: 10, alignItems: 'center', border: '1px solid var(--line)', transition: '.25s' }}
                   onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--fg)'}
                   onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--line)'}>
@@ -309,7 +309,7 @@ export default function Home() {
             </a>
             <FootCol title="Soluções" links={[['#solucoes', 'Ativação de marca'], ['#solucoes', 'Geração de leads'], ['#solucoes', 'Brindes & pesquisas']]} />
             <FootCol title="Planos" links={[['#planos', 'Flash'], ['#planos', 'Studio'], ['#planos', 'Signature']]} />
-            <FootCol title="Contato" links={[['mailto:divulgacao@eventifylab.com.br', 'divulgacao@eventifylab.com.br'], ['https://wa.me/5519981442580', 'WhatsApp'], ['#', 'LinkedIn']]} />
+            <FootCol title="Contato" links={[['mailto:divulgacao@eventifylab.com.br', 'divulgacao@eventifylab.com.br'], ['https://wa.me/5519992520470', 'WhatsApp'], ['#', 'LinkedIn']]} />
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 46, paddingTop: 22, borderTop: '1px solid var(--line)', fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--muted)', flexWrap: 'wrap', gap: 8 }}>
             <span>© 2026 EVENTIFY LAB</span>
