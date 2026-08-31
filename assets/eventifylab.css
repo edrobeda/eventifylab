@@ -275,12 +275,21 @@ footer.site{padding-block:56px 32px;}
 .legal-banner{background:var(--amber-soft);border:1px solid rgba(231,178,90,.35);padding:18px 22px;font-size:.92rem;color:var(--ink);}
 .legal-banner strong{color:var(--amber);}
 
-/* corpo em prosa da política de privacidade */
-.legal-body{max-width:74ch;margin-top:8px;margin-inline:0;}
+/* corpo em prosa da política de privacidade — max-width:74ch fica nos
+   elementos de texto (p/ul), NUNCA no container .legal-body em si: esse
+   container também é .wrap (centraliza com margin-inline:auto em telas
+   largas), e limitar a largura dele por fora entra em conflito com essa
+   centralização — o texto ficava grudado na borda esquerda enquanto o
+   resto da página (h1, lede, botões) centralizava normalmente, uma
+   diferença de até 300px em tela de 1920px. Assim, o container mantém o
+   comportamento padrão do .wrap (mesma margem de todo o site, em
+   qualquer largura), e só a prosa em si tem a largura de leitura limitada,
+   sempre alinhada à esquerda dentro dele. */
+.legal-body{margin-top:8px;}
 .legal-body h2{margin-top:48px;font-size:1.4rem;}
 .legal-body h2:first-child{margin-top:0;}
-.legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
-.legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
+.legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;max-width:74ch;}
+.legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;max-width:74ch;}
 .legal-body li{margin-top:6px;}
 .legal-body strong{color:var(--ink);}
 
