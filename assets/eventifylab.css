@@ -276,7 +276,7 @@ footer.site{padding-block:56px 32px;}
 .legal-banner strong{color:var(--amber);}
 
 /* corpo em prosa da política de privacidade */
-.legal-body{max-width:74ch;margin-top:8px;}
+.legal-body{max-width:74ch;margin-top:8px;margin-inline:0;}
 .legal-body h2{margin-top:48px;font-size:1.4rem;}
 .legal-body h2:first-child{margin-top:0;}
 .legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
