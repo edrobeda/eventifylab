@@ -1,16 +1,509 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eventify Lab - Transformando Eventos em Experiencias</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventifyLab · Ativações interativas para estandes de feira</title>
+<meta name="description" content="Jogo em totem no estande, cadastro no celular do visitante e relatório de leads no fim do evento. Quatro anos, mais de 20 feiras e mais de 28 mil leads captados. A partir de R$ 2.270.">
+<link rel="canonical" href="https://eventifylab.com/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#081c1b">
+<meta name="color-scheme" content="dark">
+
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/icons/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EventifyLab">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://eventifylab.com/">
+<meta property="og:title" content="EventifyLab · Ativações interativas para estandes de feira">
+<meta property="og:description" content="Jogo em totem no estande, cadastro no celular do visitante e relatório de leads no fim do evento. Quatro anos, mais de 20 feiras e mais de 28 mil leads captados. A partir de R$ 2.270.">
+<!-- og:image pendente — precisa de foto real do totem em uso (ver seção de pendências no e-mail de entrega) -->
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EventifyLab · Ativações interativas para estandes de feira">
+<meta name="twitter:description" content="Jogo em totem no estande, cadastro no celular do visitante e relatório de leads no fim do evento. Quatro anos, mais de 20 feiras e mais de 28 mil leads captados. A partir de R$ 2.270.">
+
+<link rel="preload" href="assets/fontes/Grift-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/eventifylab.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EventifyLab",
+  "url": "https://eventifylab.com/",
+  "logo": "https://eventifylab.com/assets/logos/logo-eventifylab-escuro.svg",
+  "email": "contato@eventifylab.com",
+  "telephone": "+55-19-99252-0470",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Americana",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  },
+  "description": "Ativações interativas para estandes de feira desde 2022. Jogo em totem, cadastro no celular do visitante e relatório de leads no fim do evento."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Por que não fazemos isso internamente?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque o jogo já existe, já rodou em mais de 20 feiras e não tem risco de bug estreando no dia do seu evento. Desenvolver do zero custa tempo de time interno e estreia sem teste de campo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "E se der problema durante o evento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A gente acompanha remotamente todos os dias, em tempo real, com um canal direto aberto. Gestão de prêmios e suporte técnico estão inclusos nos dias contratados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "É seguro coletar CPF dos participantes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A coleta segue a LGPD, com aceite explícito e aceite de marketing separado e opcional. O dado fica em sistema próprio e você recebe o relatório consolidado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo antes eu preciso fechar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flash e Replay, dois dias. Studio, 15 dias úteis. Signature, 25. Abaixo disso a gente conversa sobre o que ainda cabe."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Service",
+      "position": 1,
+      "name": "EventifyLab Flash",
+      "description": "Jogo pronto, sem etapa de design. Template padrão com cadastro, quiz e roleta de prêmios, ativado em 24 horas.",
+      "provider": {
+        "@type": "Organization",
+        "name": "EventifyLab"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "2270",
+        "priceCurrency": "BRL",
+        "description": "1 dia de evento; 3 dias por R$ 3.470"
+      }
+    },
+    {
+      "@type": "Service",
+      "position": 2,
+      "name": "EventifyLab Studio",
+      "description": "Identidade visual desenhada para a marca, cadastro personalizável, fluxo de participação personalizável e escolha entre mais de 5 módulos de jogo.",
+      "provider": {
+        "@type": "Organization",
+        "name": "EventifyLab"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "5410",
+        "priceCurrency": "BRL",
+        "description": "1 dia de evento; 3 dias por R$ 6.610"
+      }
+    },
+    {
+      "@type": "Service",
+      "position": 3,
+      "name": "EventifyLab Signature",
+      "description": "Mecânica de jogo original, com pesquisa e desenvolvimento exclusivos e identidade sob medida para a ativação.",
+      "provider": {
+        "@type": "Organization",
+        "name": "EventifyLab"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "BRL",
+        "description": "A partir de R$ 6.610; consulte valores"
+      }
+    },
+    {
+      "@type": "Service",
+      "position": 4,
+      "name": "EventifyLab Replay",
+      "description": "Reativação de um pacote Studio ou Signature já entregue antes, para um novo evento, nova data ou outra marca do mesmo grupo.",
+      "provider": {
+        "@type": "Organization",
+        "name": "EventifyLab"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "2270",
+        "priceCurrency": "BRL",
+        "description": "1 dia de evento; 3 dias por R$ 3.470"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+
+<svg class="grain" aria-hidden="true">
+  <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter>
+  <rect width="100%" height="100%" filter="url(#n)"/>
+</svg>
+<div id="scrollProgress" aria-hidden="true"></div>
+
+<header id="siteHeader">
+  <div class="wrap nav-row">
+    <a href="#home" aria-label="EventifyLab, ir para o início" style="display:flex;align-items:center;">
+      <img src="assets/logos/logo-eventifylab-escuro.svg" alt="" aria-hidden="true" width="150" height="30" style="display:block;">
+    </a>
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#home">Home</a>
+      <a href="#como-funciona">Como funciona?</a>
+      <a href="#mecanicas">Mecânicas</a>
+      <a href="#pacotes">Pacotes</a>
+      <a href="parceiros/">Parceiros</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav id="mobile-menu" class="wrap" aria-label="Navegação móvel">
+    <a href="#home">Home</a>
+    <a href="#como-funciona">Como funciona?</a>
+    <a href="#mecanicas">Mecânicas</a>
+    <a href="#pacotes">Pacotes</a>
+    <a href="parceiros/">Parceiros</a>
+  </nav>
+</header>
+
+<main id="home">
+
+  <!-- HERO — texto identico ao Hero.jsx / Figma atual -->
+  <section class="hero" style="position:relative;">
+    <span class="cross tl"></span><span class="cross tr"></span>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Ativação interativa para estande, no ar em 24 horas.</h1>
+        <p class="lede">+ visitantes, + engajamento e Leads qualificados para seu stand</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/5519992520470" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 20l1.5-4.3A8 8 0 1 1 9 18.3L4 20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            Fale com a gente
+          </a>
+          <a href="#como-funciona" class="btn btn-ghost">
+            Ver como funciona
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero-diagram" style="margin:0;">
+        <svg viewBox="0 0 360 320" width="100%" height="auto" role="img" aria-label="Fluxo esquemático: QR code, celular, totem e relatório de leads">
+          <rect x="24" y="24" width="72" height="72" fill="none" stroke="#9fb6b2" stroke-width="1.4"/>
+          <g fill="#edefea">
+            <rect x="34" y="34" width="14" height="14"/><rect x="72" y="34" width="14" height="14"/>
+            <rect x="34" y="72" width="14" height="14"/><rect x="54" y="54" width="12" height="12"/>
+            <rect x="72" y="72" width="6" height="6"/><rect x="82" y="80" width="6" height="6"/>
+          </g>
+          <path class="flow-dash" d="M96 60 L150 60 L150 130" stroke="#3f9ea5" stroke-width="1.4" fill="none"/>
+          <rect x="118" y="130" width="64" height="112" rx="6" fill="none" stroke="#9fb6b2" stroke-width="1.4"/>
+          <rect x="128" y="144" width="44" height="70" fill="rgba(63,158,165,.16)" stroke="#3f9ea5" stroke-width="1"/>
+          <circle cx="150" cy="228" r="4" fill="none" stroke="#9fb6b2" stroke-width="1.2"/>
+          <path class="flow-dash" d="M182 186 L246 186 L246 96" stroke="#3f9ea5" stroke-width="1.4" fill="none"/>
+          <rect x="216" y="40" width="60" height="120" fill="none" stroke="#9fb6b2" stroke-width="1.4"/>
+          <rect x="226" y="52" width="40" height="60" fill="rgba(63,158,165,.16)" stroke="#3f9ea5" stroke-width="1"/>
+          <rect x="234" y="122" width="24" height="8" fill="none" stroke="#9fb6b2" stroke-width="1"/>
+          <path class="flow-dash" d="M276 100 L332 100 L332 190" stroke="#3f9ea5" stroke-width="1.4" fill="none"/>
+          <rect x="296" y="190" width="52" height="66" fill="none" stroke="#3f9ea5" stroke-width="1.6"/>
+          <line x1="306" y1="206" x2="338" y2="206" stroke="#9fb6b2" stroke-width="1.2"/>
+          <line x1="306" y1="218" x2="338" y2="218" stroke="#9fb6b2" stroke-width="1.2"/>
+          <line x1="306" y1="230" x2="326" y2="230" stroke="#9fb6b2" stroke-width="1.2"/>
+        </svg>
+        <figcaption>Espaço reservado para foto ou vídeo real do totem em uso <code class="dev">pendente</code></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- METRICAS — texto identico ao MetricsBar.jsx / Figma atual, sem chapeu novo -->
+  <section aria-label="Números da EventifyLab" class="py hairline-top reveal">
+    <div class="wrap">
+      <div class="stat-grid">
+        <div class="stat"><div class="num">4 anos</div><div class="lbl">de mercado</div></div>
+        <div class="stat"><div class="num">20+</div><div class="lbl">Feiras realizadas</div></div>
+        <div class="stat"><div class="num">500+</div><div class="lbl">Horas de interação</div></div>
+        <div class="stat"><div class="num">+28 mil</div><div class="lbl">Leads qualificados</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA — texto identico ao HowItWorks.jsx / Figma atual -->
+  <section id="como-funciona" class="py hairline-top reveal">
+    <div class="wrap">
+      <h2 style="font-size:clamp(1.9rem,3.4vw,3.1rem);">Como funciona?</h2>
+      <p class="how-intro">Por meio da Gamificação captamos o lead, educamos o participante sobre sua marca ou produto e o recompensamos por isso. O visitante faz tudo no próprio celular e no totem. <strong>Você não configura, não opera e não instala nada.</strong></p>
+      <div class="steps">
+        <div class="step">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" stroke="currentColor" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <h3>Cadastro</h3>
+          <p>Pelo celular (QR Code/link) ou pelo totem. Coletamos os dados que importam para marketing e comercial.</p>
+        </div>
+        <div class="step">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>Interação</h3>
+          <p>Por meio de interação no stand, educamos o participante já cadastrado e medimos o nível de conhecimento dos leads.</p>
+        </div>
+        <div class="step">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l2.4 5.1L20 9l-4 3.9.9 5.6L12 15.9 7.1 18.5 8 12.9 4 9l5.6-.9L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <h3>Recompensa</h3>
+          <p>Distribuição de brindes integrado ao fluxo, mecânicas de recompensa diversas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECANICAS — texto identico a secao 4 de conteudo-site-eventifylab.md -->
+  <section id="mecanicas" class="py hairline-top reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">O que dá para colocar no estande</span>
+        <h2>Cinco jogos prontos e testados</h2>
+      </div>
+      <div class="mech-list">
+        <div class="mech-row"><span class="name">Quiz</span><span class="desc">Ensinar sobre o produto enquanto capta. Até 10 perguntas, embaralhadas a cada rodada.</span></div>
+        <div class="mech-row"><span class="name">Roleta de prêmios</span><span class="desc">Distribuir brinde com controle de estoque, o prêmio sai da roleta sozinho quando acaba.</span></div>
+        <div class="mech-row"><span class="name">Jogo da memória</span><span class="desc">Fixar produto e embalagem, com o tempo como placar.</span></div>
+        <div class="mech-row"><span class="name">Raspadinha</span><span class="desc">Revelar prêmio na hora, para fluxo alto e pouco tempo por pessoa.</span></div>
+        <div class="mech-row"><span class="name">Pesquisa de opinião</span><span class="desc">Trocar a resposta por um brinde e sair da feira com dado, não só com contato.</span></div>
+      </div>
+      <p class="closer">Todos os cinco estão inclusos no pacote Studio. Não é escolher um.</p>
+    </div>
+  </section>
+
+  <!-- PACOTES — texto identico a secao 5 -->
+  <section id="pacotes" class="py hairline-top reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Quatro formatos</span>
+        <h2>Do jogo pronto à mecânica desenhada do zero</h2>
+      </div>
+      <div class="pack-carousel-wrap">
+        <div class="pack-carousel" id="packCarousel">
+
+          <article class="pack-card">
+            <div class="head">
+              <div class="lockup"><span class="brand">EventifyLab</span><span class="sep"></span><span class="tier">Flash</span></div>
+              <h4>Jogo pronto</h4>
+            </div>
+            <div class="body">
+              <ul class="feat">
+                <li>Template padrão</li>
+                <li>Cadastro + Quiz + Roleta de Prêmios</li>
+              </ul>
+              <div class="price-row">
+                <div class="price">R$ 2.270<span class="unit">1 dia</span></div>
+                <div class="extra">+R$ 600/dia adicional</div>
+                <div class="duration"><span class="clk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>24h</div>
+              </div>
+            </div>
+            <div class="strip">3 dias R$ 3.470</div>
+          </article>
+
+          <article class="pack-card">
+            <div class="head">
+              <div class="lockup"><span class="brand">EventifyLab</span><span class="sep"></span><span class="tier">Studio</span></div>
+              <h4>Identidade desenhada</h4>
+            </div>
+            <div class="body">
+              <ul class="feat">
+                <li>Personalização visual completa</li>
+                <li>Cadastro personalizável</li>
+                <li>Fluxo de participação personalizável</li>
+                <li>Escolha entre +5 módulos disponíveis</li>
+              </ul>
+              <div class="price-row">
+                <div class="price">R$ 5.410<span class="unit">1 dia</span></div>
+                <div class="extra">+R$ 600/dia adicional</div>
+                <div class="duration"><span class="clk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>15 dias úteis</div>
+              </div>
+            </div>
+            <div class="strip">3 dias R$ 6.610</div>
+          </article>
+
+          <article class="pack-card">
+            <div class="head">
+              <div class="lockup"><span class="brand">EventifyLab</span><span class="sep"></span><span class="tier">Signature</span></div>
+              <h4>Mecânica original</h4>
+            </div>
+            <div class="body">
+              <ul class="feat">
+                <li>Pesquisa e desenvolvimento exclusiva</li>
+                <li>Mecânica de jogo sob medida</li>
+                <li>Identidade e <code class="dev">texto cortado na imagem de referência — completar</code></li>
+              </ul>
+              <div class="price-row">
+                <div class="pricelabel">a partir de:</div>
+                <div class="price">R$ 6.610</div>
+                <div class="duration"><span class="clk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>+25 dias úteis</div>
+              </div>
+            </div>
+            <div class="strip">Consulte valores</div>
+          </article>
+
+          <article class="pack-card">
+            <div class="head">
+              <div class="lockup"><span class="brand">EventifyLab</span><span class="sep"></span><span class="tier">Replay</span></div>
+              <h4>Jogo reativado</h4>
+            </div>
+            <div class="body">
+              <ul class="feat">
+                <li>Reativação de Studio ou Signature</li>
+              </ul>
+              <div class="price-row">
+                <div class="price">R$ 2.270<span class="unit">1 dia</span></div>
+                <div class="extra">+R$ 600/dia adicional</div>
+                <div class="duration"><span class="clk"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>24h</div>
+              </div>
+            </div>
+            <div class="strip">3 dias R$ 3.470</div>
+          </article>
+
+        </div>
+        <div class="pack-nav">
+          <span class="hint"></span>
+          <div class="pack-nav-buttons">
+            <button type="button" id="packPrev" aria-label="Pacote anterior"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button type="button" id="packNext" aria-label="Próximo pacote"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <p class="closer">Qual deles serve depende de três coisas, nesta ordem: o que você precisa, quanto tem para investir e quanto falta para o evento. É a primeira conversa.</p>
+    </div>
+  </section>
+
+  <!-- RELATORIO — texto identico a secao 6 -->
+  <section class="py hairline-top reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">O evento acaba, o trabalho não</span>
+        <h2>O relatório é entregável, não cortesia</h2>
+      </div>
+      <div class="tagcloud">
+        <span>Total de cadastros</span><span>Prêmios distribuídos</span><span>Taxa de conclusão do jogo</span>
+        <span>Taxa de aceite de marketing</span><span>Perfil dos participantes</span><span>Desempenho no quiz</span>
+        <span>Horário de pico de movimento</span>
+      </div>
+      <p class="closer">Vem formatado, pronto para circular internamente. Não é um export bruto de planilha.</p>
+    </div>
+  </section>
+
+  <!-- FAQ — texto identico a secao 7 -->
+  <section class="py hairline-top reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>As perguntas que sempre aparecem</h2>
+      </div>
+      <div class="qa-list">
+        <div class="qa">
+          <p class="q">Por que não fazemos isso internamente?</p>
+          <p class="a">Porque o jogo já existe, já rodou em mais de 20 feiras e não tem risco de bug estreando no dia do seu evento. Desenvolver do zero custa tempo de time interno e estreia sem teste de campo.</p>
+        </div>
+        <div class="qa">
+          <p class="q">E se der problema durante o evento?</p>
+          <p class="a">A gente acompanha remotamente todos os dias, em tempo real, com um canal direto aberto. Gestão de prêmios e suporte técnico estão inclusos nos dias contratados.</p>
+        </div>
+        <div class="qa">
+          <p class="q">É seguro coletar CPF dos participantes?</p>
+          <p class="a">A coleta segue a LGPD, com aceite explícito e aceite de marketing separado e opcional. O dado fica em sistema próprio e você recebe o relatório consolidado. Está tudo escrito na <a href="privacidade/" style="color:var(--teal);">política de privacidade</a>.</p>
+        </div>
+        <div class="qa">
+          <p class="q">Quanto tempo antes eu preciso fechar?</p>
+          <p class="a">Flash e Replay, dois dias. Studio, 15 dias úteis. Signature, 25. Abaixo disso a gente conversa sobre o que ainda cabe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCEIROS — teaser curto, "Bloco 9" de PARTE 1 do documento de conteúdo. Página completa em /parceiros -->
+  <section id="parceiros" class="py hairline-top reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Monta estande? A ativação entra na sua proposta</h2>
+        <p class="section-lede">A gente responde em 24 horas úteis, conduz a negociação com crédito à sua empresa e nunca fala preço direto com o cliente que veio de você.</p>
+      </div>
+      <div class="partner-grid partner-grid-3">
+        <div class="partner-panel badge"><h3>Sem custo adiantado</h3><p>Você não paga nada para oferecer.</p></div>
+        <div class="partner-panel badge"><h3>Cliente protegido por 12 meses</h3><p>Contados do primeiro contato dele com você.</p></div>
+        <div class="partner-panel badge"><h3>Entrega co-marcada</h3><p>Ativação Interativa by EventifyLab.</p></div>
+      </div>
+      <div style="margin-top:28px;">
+        <a href="parceiros/" class="btn btn-primary">Ver o programa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPPORT BANNER — texto identico ao SupportBanner.jsx -->
+  <section class="py hairline-top reveal banner">
+    <div class="wrap" style="max-width:760px;">
+      <p class="k">Acompanhamento remoto fulltime</p>
+      <p>Suporte em tempo real, com um canal direto aberto.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site hairline-top">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div class="footer-col">
+        <img class="footer-logo" src="assets/logos/logo-eventifylab-escuro.svg" alt="EventifyLab" width="140" height="28">
+        <p>Ativações interativas para estandes de feira desde 2022. Americana, São Paulo. Operação remota, atendimento em todo o Brasil.</p>
+      </div>
+      <div class="footer-col">
+        <div class="flabel">Produto</div>
+        <ul>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#pacotes">Pacotes</a></li>
+          <li><a href="parceiros/">Parceiros</a></li>
+          <li><a href="https://mandasalve.com" target="_blank" rel="noopener">Salve!, telão de festa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="flabel">Contato e legal</div>
+        <ul>
+          <li><a href="https://wa.me/5519992520470" target="_blank" rel="noopener">WhatsApp 19 99252-0470</a></li>
+          <li><a href="mailto:contato@eventifylab.com">contato@eventifylab.com</a></li>
+          <li><a href="privacidade/">Política de privacidade <code class="dev">rascunho, sem revisão jurídica</code></a></li>
+          <li><a href="mailto:privacidade@eventifylab.com">privacidade@eventifylab.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>EventifyLab</span><span>·</span>
+      <span>CNPJ <code class="dev">pendente — não publicar sem o número real</code></span><span>·</span>
+      <span>Americana, São Paulo</span><span>·</span>
+      <span>© 2026 EventifyLab</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/eventifylab.js" defer></script>
+</body>
 </html>

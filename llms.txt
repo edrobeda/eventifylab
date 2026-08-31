@@ -1,0 +1,36 @@
+# EventifyLab
+
+> Ativação interativa para estande, no ar em 24 horas. Jogo em totem, cadastro pelo celular do visitante e relatório de leads no fim do evento.
+
+EventifyLab desenha e opera ativações de gamificação para estandes de feira. Quatro anos de mercado, mais de 20 feiras realizadas, mais de 500 horas de interação e mais de 28 mil leads qualificados captados.
+
+## Como funciona
+Cadastro pelo celular (QR code ou link) ou pelo totem. Interação no estande com jogos que educam o participante já cadastrado. Recompensa com distribuição de brindes integrada ao fluxo. Sem instalação e sem operação do lado do cliente.
+
+## Mecânicas de jogo disponíveis
+- Quiz: até 10 perguntas, embaralhadas a cada rodada
+- Roleta de prêmios: distribuição com controle de estoque
+- Jogo da memória: fixação de produto e embalagem
+- Raspadinha: revelação de prêmio na hora
+- Pesquisa de opinião: coleta de dado qualitativo em troca de brinde
+
+## Pacotes e preços (BRL, 1 dia de evento)
+- Flash — R$ 2.270 (3 dias: R$ 3.470). Template padrão, cadastro + quiz + roleta de prêmios, ativado em 24h.
+- Studio — R$ 5.410 (3 dias: R$ 6.610). Identidade visual completa, cadastro e fluxo de participação personalizáveis, mais de 5 módulos disponíveis, 15 dias úteis.
+- Signature — a partir de R$ 6.610, consulte valores. Pesquisa e desenvolvimento exclusivos, mecânica de jogo sob medida, +25 dias úteis.
+- Replay — R$ 2.270 (3 dias: R$ 3.470). Reativação de um pacote Studio ou Signature já entregue antes, para novo evento, nova data ou outra marca do mesmo grupo.
+Todo pacote soma +R$ 600 por dia adicional de evento.
+
+## Relatório pós-evento
+Total de cadastros, prêmios distribuídos, taxa de conclusão do jogo, taxa de aceite de marketing, perfil dos participantes, desempenho no quiz e horário de pico de movimento. Entregue formatado, não como export bruto de planilha.
+
+## Programa de parceria
+Montadoras de estande: item complementar co-marcado na proposta de montagem, com comissão de 10% sobre o valor fechado, cliente protegido por 12 meses e vigência de 12 meses. Agências de publicidade e eventos: modelo de fornecimento técnico, sem exposição da marca EventifyLab para o cliente final. Página completa do programa: https://eventifylab.com/parceiros/
+
+## Contato
+WhatsApp: +55 19 99252-0470
+E-mail: contato@eventifylab.com
+Site: https://eventifylab.com/
+
+## Detalhes de preço em formato de dados
+Ver /pricing.md
