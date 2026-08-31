@@ -1,0 +1,13 @@
+services:
+  eventify-app:
+    container_name: DK_EVENTIFY_APP
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - eventify_network
+
+networks:
+  eventify_network:
+    external: true
