@@ -215,35 +215,27 @@
         </div>
       </div>
 
-      <figure class="hero-diagram" style="margin:0;">
-        <svg viewBox="0 0 360 320" width="100%" height="auto" role="img" aria-label="Fluxo esquemático: QR code, celular, totem e relatório de leads">
-          <rect x="24" y="24" width="72" height="72" fill="none" stroke="#9fb6b2" stroke-width="1.4"/>
-          <g fill="#edefea">
-            <rect x="34" y="34" width="14" height="14"/><rect x="72" y="34" width="14" height="14"/>
-            <rect x="34" y="72" width="14" height="14"/><rect x="54" y="54" width="12" height="12"/>
-            <rect x="72" y="72" width="6" height="6"/><rect x="82" y="80" width="6" height="6"/>
-          </g>
-          <path class="flow-dash" d="M96 60 L150 60 L150 130" stroke="#3f9ea5" stroke-width="1.4" fill="none"/>
-          <rect x="118" y="130" width="64" height="112" rx="6" fill="none" stroke="#9fb6b2" stroke-width="1.4"/>
-          <rect x="128" y="144" width="44" height="70" fill="rgba(63,158,165,.16)" stroke="#3f9ea5" stroke-width="1"/>
-          <circle cx="150" cy="228" r="4" fill="none" stroke="#9fb6b2" stroke-width="1.2"/>
-          <path class="flow-dash" d="M182 186 L246 186 L246 96" stroke="#3f9ea5" stroke-width="1.4" fill="none"/>
-          <rect x="216" y="40" width="60" height="120" fill="none" stroke="#9fb6b2" stroke-width="1.4"/>
-          <rect x="226" y="52" width="40" height="60" fill="rgba(63,158,165,.16)" stroke="#3f9ea5" stroke-width="1"/>
-          <rect x="234" y="122" width="24" height="8" fill="none" stroke="#9fb6b2" stroke-width="1"/>
-          <path class="flow-dash" d="M276 100 L332 100 L332 190" stroke="#3f9ea5" stroke-width="1.4" fill="none"/>
-          <rect x="296" y="190" width="52" height="66" fill="none" stroke="#3f9ea5" stroke-width="1.6"/>
-          <line x1="306" y1="206" x2="338" y2="206" stroke="#9fb6b2" stroke-width="1.2"/>
-          <line x1="306" y1="218" x2="338" y2="218" stroke="#9fb6b2" stroke-width="1.2"/>
-          <line x1="306" y1="230" x2="326" y2="230" stroke="#9fb6b2" stroke-width="1.2"/>
-        </svg>
-        <figcaption>Espaço reservado para foto ou vídeo real do totem em uso <code class="dev">pendente</code></figcaption>
+      <figure class="hero-diagram">
+        <div class="totem-placeholder" role="img" aria-label="Espaço reservado para foto do totem em uso">
+          <svg viewBox="0 0 100 100" width="30%" height="auto" fill="none" aria-hidden="true">
+            <rect x="30" y="8" width="40" height="52" rx="4" stroke="#3f9ea5" stroke-width="2"/>
+            <rect x="36" y="16" width="28" height="34" fill="rgba(63,158,165,.16)" stroke="#3f9ea5" stroke-width="1"/>
+            <rect x="44" y="60" width="12" height="22" stroke="#9fb6b2" stroke-width="1.6"/>
+            <rect x="30" y="82" width="40" height="7" rx="2" stroke="#9fb6b2" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <figcaption>Espaço reservado para foto do totem em uso — placeholder, <code class="dev">substituir pela imagem real</code></figcaption>
       </figure>
     </div>
+
+    <a href="#numeros" class="scroll-cta">
+      <span>Role para ver mais</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
   </section>
 
   <!-- METRICAS — texto identico ao MetricsBar.jsx / Figma atual, sem chapeu novo -->
-  <section aria-label="Números da EventifyLab" class="py hairline-top reveal">
+  <section id="numeros" aria-label="Números da EventifyLab" class="py hairline-top reveal">
     <div class="wrap">
       <div class="stat-grid">
         <div class="stat"><div class="num">4 anos</div><div class="lbl">de mercado</div></div>

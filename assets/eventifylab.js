@@ -53,7 +53,16 @@
           }
         });
       }, {threshold:.12});
-      els.forEach(function(el){ io.observe(el); });
+      // so comeca a observar depois do primeiro scroll de verdade do
+      // usuario — sem isso, uma secao que ja nasce visivel no
+      // carregamento (ex: numeros, logo abaixo do hero) revelava sozinha,
+      // sem o efeito de entrada. prefers-reduced-motion ja deixa .reveal
+      // sempre visivel via CSS, entao esse atraso nao afeta esses
+      // usuarios de qualquer forma.
+      window.addEventListener('scroll', function comecarReveal(){
+        els.forEach(function(el){ io.observe(el); });
+        window.removeEventListener('scroll', comecarReveal);
+      }, { passive: true, once: true });
     } else {
       els.forEach(function(el){ el.classList.add('in'); });
     }

@@ -74,14 +74,15 @@
   #mobile-menu.open{display:flex;}
   #mobile-menu a{padding:12px 4px;font-size:15px;font-weight:500;color:var(--teal);text-decoration:none;}
 
-  .hero{display:flex;align-items:center;padding-top:clamp(32px,6vw,64px);padding-bottom:56px;}
+  .hero{display:flex;flex-direction:column;align-items:center;padding-top:clamp(32px,6vw,64px);padding-bottom:56px;}
   .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;width:100%;}
   @media(min-width:1024px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:40px;}}
   .hero h1{font-size:clamp(2.3rem,5.2vw,4.1rem);max-width:14ch;}
   .hero .lede{font-size:clamp(1.05rem,1.6vw,1.3rem);margin-top:26px;color:var(--ink-dim);font-weight:300;max-width:46ch;}
   .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:36px;}
 
-  .hero-diagram{position:relative;border:1px dashed var(--line-strong);border-radius:var(--r-sm);padding:24px 20px 18px;background:linear-gradient(180deg,var(--bg-raised),var(--bg-sunken));}
+  .hero-diagram{position:relative;margin:0;}
+  .totem-placeholder{aspect-ratio:5/4;width:100%;border:1px dashed var(--line-strong);border-radius:var(--r-sm);background:linear-gradient(180deg,var(--bg-raised),var(--bg-sunken));display:flex;align-items:center;justify-content:center;}
   .hero-diagram figcaption{font-family:var(--disp);font-weight:500;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:14px;line-height:1.6;border-top:1px solid var(--line);padding-top:12px;}
   .flow-dash{stroke-dasharray:6 6;animation:dashmove 22s linear infinite;}
   @media (prefers-reduced-motion:reduce){.flow-dash{animation:none;}}
@@ -275,21 +276,12 @@ footer.site{padding-block:56px 32px;}
 .legal-banner{background:var(--amber-soft);border:1px solid rgba(231,178,90,.35);padding:18px 22px;font-size:.92rem;color:var(--ink);}
 .legal-banner strong{color:var(--amber);}
 
-/* corpo em prosa da política de privacidade — max-width:74ch fica nos
-   elementos de texto (p/ul), NUNCA no container .legal-body em si: esse
-   container também é .wrap (centraliza com margin-inline:auto em telas
-   largas), e limitar a largura dele por fora entra em conflito com essa
-   centralização — o texto ficava grudado na borda esquerda enquanto o
-   resto da página (h1, lede, botões) centralizava normalmente, uma
-   diferença de até 300px em tela de 1920px. Assim, o container mantém o
-   comportamento padrão do .wrap (mesma margem de todo o site, em
-   qualquer largura), e só a prosa em si tem a largura de leitura limitada,
-   sempre alinhada à esquerda dentro dele. */
-.legal-body{margin-top:8px;}
+/* corpo em prosa da política de privacidade */
+.legal-body{max-width:74ch;margin-top:8px;margin-inline:0;}
 .legal-body h2{margin-top:48px;font-size:1.4rem;}
 .legal-body h2:first-child{margin-top:0;}
-.legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;max-width:74ch;}
-.legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;max-width:74ch;}
+.legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
+.legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
 .legal-body li{margin-top:6px;}
 .legal-body strong{color:var(--ink);}
 
@@ -302,3 +294,14 @@ footer.site{padding-block:56px 32px;}
 .product-switch button[aria-pressed="true"]{background:var(--teal);color:var(--on-teal);}
 .product-switch button:not([aria-pressed="true"]):hover{color:var(--ink);}
 .product-panel[hidden]{display:none;}
+
+/* CTA "role para ver mais" no hero — irmao do .hero-grid, dentro do
+   .hero (que agora empilha em coluna), NAO position:absolute: sem o
+   hero forcado em 100dvh, um CTA "grudado no fim da tela" nao faz mais
+   sentido — ele fica logo abaixo do conteudo, sempre, em qualquer
+   altura de tela. */
+.scroll-cta{margin-top:32px;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--ink-faint);text-decoration:none;font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+.scroll-cta:hover{color:var(--teal);}
+.scroll-cta svg{animation:scrollBounce 1.6s ease-in-out infinite;}
+@keyframes scrollBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+@media (prefers-reduced-motion:reduce){.scroll-cta svg{animation:none;}}
