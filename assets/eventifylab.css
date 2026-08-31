@@ -74,7 +74,7 @@
   #mobile-menu.open{display:flex;}
   #mobile-menu a{padding:12px 4px;font-size:15px;font-weight:500;color:var(--teal);text-decoration:none;}
 
-  .hero{min-height:100dvh;display:flex;align-items:center;padding-top:clamp(32px,6vw,64px);padding-bottom:56px;}
+  .hero{display:flex;align-items:center;padding-top:clamp(32px,6vw,64px);padding-bottom:56px;}
   .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center;width:100%;}
   @media(min-width:1024px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:40px;}}
   .hero h1{font-size:clamp(2.3rem,5.2vw,4.1rem);max-width:14ch;}
