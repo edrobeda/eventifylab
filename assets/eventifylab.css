@@ -286,13 +286,14 @@ footer.site{padding-block:56px 32px;}
 .legal-body strong{color:var(--ink);}
 
 /* filtro por produto (EventifyLab / Salve!) na politica de privacidade —
-   sem --mono (removida do site); mesmo papel de rotulo pequeno maiusculo
-   que .eyebrow/.tag ja usam, entao mesmo peso: Grift 500 (Medium) */
-.product-switch{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;margin-top:28px;}
-.product-switch button{font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--ink-dim);border:none;cursor:pointer;transition:background-color .15s ease,color .15s ease;}
-.product-switch button + button{border-left:1px solid var(--line-strong);}
-.product-switch button[aria-pressed="true"]{background:var(--teal);color:var(--on-teal);}
-.product-switch button:not([aria-pressed="true"]):hover{color:var(--ink);}
+   texto simples, no estilo do menu do header (.nav-links a): sem caixa,
+   sem borda, sem fundo. Ativo = branco (var(--ink)); inativo, mas ainda
+   clicavel = teal, igual a cor padrao dos links do menu. */
+.product-switch{display:inline-flex;align-items:center;gap:14px;margin-top:28px;}
+.product-switch button{font-family:var(--disp);font-weight:500;font-size:15px;background:transparent;color:var(--teal);border:none;padding:0;cursor:pointer;transition:color .15s ease;}
+.product-switch button:hover{color:var(--ink);}
+.product-switch button[aria-pressed="true"]{color:var(--ink);cursor:default;}
+.product-switch .sep{color:var(--line-strong);}
 .product-panel[hidden]{display:none;}
 
 /* CTA "role para ver mais" no hero — irmao do .hero-grid, dentro do
