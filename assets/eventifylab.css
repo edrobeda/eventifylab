@@ -284,3 +284,13 @@ footer.site{padding-block:56px 32px;}
 .legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
 .legal-body li{margin-top:6px;}
 .legal-body strong{color:var(--ink);}
+
+/* filtro por produto (EventifyLab / Salve!) na politica de privacidade —
+   sem --mono (removida do site); mesmo papel de rotulo pequeno maiusculo
+   que .eyebrow/.tag ja usam, entao mesmo peso: Grift 500 (Medium) */
+.product-switch{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--r-sm);overflow:hidden;margin-top:28px;}
+.product-switch button{font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;background:transparent;color:var(--ink-dim);border:none;cursor:pointer;transition:background-color .15s ease,color .15s ease;}
+.product-switch button + button{border-left:1px solid var(--line-strong);}
+.product-switch button[aria-pressed="true"]{background:var(--teal);color:var(--on-teal);}
+.product-switch button:not([aria-pressed="true"]):hover{color:var(--ink);}
+.product-panel[hidden]{display:none;}

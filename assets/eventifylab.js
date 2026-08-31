@@ -143,4 +143,21 @@
         carousel.addEventListener(evt, function(){ dragging = false; });
       });
     }
+
+    // filtro por produto na politica de privacidade — so esconde via
+    // [hidden], nunca por CSS de largada, pra pagina continuar completa
+    // (os dois produtos, um embaixo do outro) sem JS/pra crawler
+    var productSwitch = document.querySelector('.product-switch');
+    if(productSwitch){
+      var productPanels = document.querySelectorAll('.product-panel');
+      var switchButtons = productSwitch.querySelectorAll('button');
+      var setProduct = function(name){
+        productPanels.forEach(function(p){ p.hidden = p.dataset.product !== name; });
+        switchButtons.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.product === name ? 'true' : 'false'); });
+      };
+      switchButtons.forEach(function(b){
+        b.addEventListener('click', function(){ setProduct(b.dataset.product); });
+      });
+      setProduct('eventifylab');
+    }
   })();
