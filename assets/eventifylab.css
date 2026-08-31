@@ -157,7 +157,7 @@
   .pack-card .duration{margin-top:12px;display:flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:400;font-size:.73rem;color:var(--ink-dim);}
   .pack-card .duration .clk{width:20px;height:20px;border-radius:50%;background:var(--teal-soft);display:flex;align-items:center;justify-content:center;color:var(--teal);flex-shrink:0;}
   .pack-card .strip{padding:13px 20px;background:#edefea;color:#081c1b;font-family:var(--disp);font-size:.8rem;font-weight:700;}
-  .pack-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px;}
+  .pack-nav{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:14px;}
   .pack-nav-buttons{display:flex;gap:10px;}
   .pack-nav button{width:38px;height:38px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--r-sm);}
   .pack-nav button:hover{border-color:var(--teal);color:var(--teal);}
