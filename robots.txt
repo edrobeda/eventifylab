@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eventifylab.com/sitemap.xml
