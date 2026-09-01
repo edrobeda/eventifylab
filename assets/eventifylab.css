@@ -168,9 +168,13 @@
   .pack-carousel::-webkit-scrollbar-track{background:transparent;}
   .pack-card{scroll-snap-align:start;flex:0 0 auto;width:82vw;max-width:300px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg-raised);}
   @media(min-width:640px){.pack-card{width:300px;}}
+  /* a partir de 1024px sempre cabem exatamente 3 cartoes na largura do
+     carrossel (2 gaps de 20px entre eles); o 4o (Replay) fica pra fora,
+     revelado ao clicar na seta de avancar */
+  @media(min-width:1024px){.pack-card{width:calc((100% - 40px)/3);max-width:none;}}
   .pack-card .head{padding:22px 20px 24px;background:linear-gradient(152deg,#3f9ea5 0%,#2e767a 24%,#122f2e 64%,#081c1b 100%);}
-  .pack-card .head .lockup{display:flex;align-items:baseline;gap:10px;}
-  .pack-card .head .brand{font-family:var(--disp);font-weight:800;font-size:.92rem;color:#fff;letter-spacing:-.01em;}
+  .pack-card .head .lockup{display:flex;align-items:center;gap:10px;}
+  .pack-card .head .brand-logo{height:16px;width:auto;display:block;}
   .pack-card .head .sep{width:1px;height:13px;background:rgba(255,255,255,.4);}
   .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:1.35rem;text-transform:uppercase;letter-spacing:.05em;color:#fff;}
   .pack-card .head h4{margin-top:14px;font-size:1rem;font-weight:700;color:#fff;}
