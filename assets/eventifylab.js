@@ -124,6 +124,7 @@
       [document.getElementById('como-funciona'), 'como-funciona'],
       [document.getElementById('mecanicas'), 'mecanicas'],
       [document.getElementById('pacotes'), 'pacotes'],
+      [document.getElementById('faq'), 'faq'],
       [document.getElementById('parceiros'), 'parceiros']
     ];
     if('IntersectionObserver' in window){
