@@ -125,20 +125,28 @@
   .closer{margin-top:28px;color:var(--ink-dim);font-size:1rem;max-width:62ch;}
 
   /* modulos: grade assimetrica tipo bento — Quiz e Roleta (is-lg) ganham
-     cartao maior (so tamanho, sem cor diferente), os outros tres dividem
-     a linha de baixo em partes iguais */
+     cartao maior; o destaque de cor (fundo + filete teal) so aparece no
+     hover, em qualquer cartao, junto com um leve deslocamento do titulo */
   .mech-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px;}
   @media(min-width:760px){
     .mech-grid{grid-template-columns:repeat(6,1fr);}
     .mech-card.is-lg{grid-column:span 3;}
     .mech-card{grid-column:span 2;}
   }
-  .mech-card{position:relative;background:var(--bg);padding:26px 24px;display:flex;flex-direction:column;gap:10px;}
+  .mech-card{position:relative;background:var(--bg);padding:26px 24px;display:flex;flex-direction:column;gap:10px;transition:background-color .3s ease;}
   .mech-card.is-lg{padding:34px 30px;gap:14px;}
-  .mech-card h3{font-size:1.05rem;}
+  .mech-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.16,1,.3,1);}
+  .mech-card:hover{background:var(--bg-raised);}
+  .mech-card:hover::before{transform:scaleX(1);}
+  .mech-card h3{font-size:1.05rem;transition:transform .3s cubic-bezier(.16,1,.3,1);}
   .mech-card.is-lg h3{font-size:1.45rem;}
+  .mech-card:hover h3{transform:translateX(8px);}
   .mech-card p{color:var(--ink-dim);font-size:.92rem;line-height:1.5;max-width:40ch;}
   .mech-card.is-lg p{font-size:1rem;max-width:46ch;}
+  @media (prefers-reduced-motion:reduce){
+    .mech-card,.mech-card::before,.mech-card h3{transition:none;}
+    .mech-card:hover h3{transform:none;}
+  }
 
   /* pacotes — carrossel de cards */
   .pack-carousel-wrap{margin-top:8px;}
@@ -228,8 +236,8 @@
 
   .pack-carousel{cursor:grab;}
   .pack-carousel:active{cursor:grabbing;}
-  .pack-card{transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s ease;}
-  .pack-card:hover{transform:translateY(-6px);box-shadow:0 24px 44px -22px rgba(0,0,0,.55);}
+  .pack-card{transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s ease;}
+  .pack-card:hover{transform:translateY(-6px);border-color:var(--teal);}
   @media (prefers-reduced-motion:reduce){.pack-card{transition:none;}.pack-card:hover{transform:none;}}
 
 /* rodapé — três colunas, conforme spec-site-eventifylab.md */
