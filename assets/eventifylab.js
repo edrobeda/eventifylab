@@ -104,19 +104,6 @@
       });
     }
 
-    // magnetic primary buttons
-    if(hoverCapable && !reducedMotion){
-      document.querySelectorAll('.btn-primary').forEach(function(btn){
-        btn.addEventListener('mousemove', function(e){
-          var r = btn.getBoundingClientRect();
-          var x = (e.clientX - r.left - r.width / 2) * 0.12;
-          var y = (e.clientY - r.top - r.height / 2) * 0.12;
-          btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-        });
-        btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
-      });
-    }
-
     // active nav link on scroll
     var navLinks = document.querySelectorAll('.nav-links a, #mobile-menu a');
     var navMap = [
