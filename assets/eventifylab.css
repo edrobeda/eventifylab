@@ -172,25 +172,29 @@
      carrossel (2 gaps de 20px entre eles); o 4o (Replay) fica pra fora,
      revelado ao clicar na seta de avancar */
   @media(min-width:1024px){.pack-card{width:calc((100% - 40px)/3);max-width:none;}}
-  .pack-card .head{padding:22px 20px 24px;background:linear-gradient(152deg,#3f9ea5 0%,#2e767a 24%,#122f2e 64%,#081c1b 100%);}
-  .pack-card .head .lockup{display:flex;align-items:center;gap:10px;}
-  .pack-card .head .brand-logo{height:16px;width:auto;display:block;}
-  .pack-card .head .sep{width:1px;height:13px;background:rgba(255,255,255,.4);}
-  .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:1.35rem;text-transform:uppercase;letter-spacing:.05em;color:#fff;}
-  .pack-card .head h4{margin-top:14px;font-size:1rem;font-weight:700;color:#fff;}
-  .pack-card .body{padding:20px;display:flex;flex-direction:column;gap:16px;flex:1;}
-  .pack-card .feat{margin:0;padding:0;display:flex;flex-direction:column;gap:9px;}
-  .pack-card .feat li{list-style:none;display:flex;gap:9px;font-size:.85rem;color:var(--ink-dim);line-height:1.4;}
-  .pack-card .feat li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:7px;}
-  .pack-card .price-row{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);}
-  .pack-card .price{font-family:var(--disp);font-weight:700;font-size:1.5rem;color:var(--ink);}
-  .pack-card .price .unit{font-size:.68rem;font-weight:400;color:var(--ink-faint);margin-left:6px;text-transform:uppercase;letter-spacing:.04em;}
-  .pack-card .price.consult{font-size:1.02rem;font-family:var(--disp);font-weight:700;color:var(--teal);}
-  .pack-card .pricelabel{font-size:.78rem;color:var(--ink-faint);margin-bottom:4px;}
-  .pack-card .extra{margin-top:5px;font-size:.74rem;color:var(--ink-faint);}
-  .pack-card .duration{margin-top:12px;display:flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:400;font-size:.73rem;color:var(--ink-dim);}
-  .pack-card .duration .clk{width:20px;height:20px;border-radius:50%;background:var(--teal-soft);display:flex;align-items:center;justify-content:center;color:var(--teal);flex-shrink:0;}
-  .pack-card .strip{padding:13px 20px;background:#edefea;color:#081c1b;font-family:var(--disp);font-size:.8rem;font-weight:700;}
+  /* reformulado pra bater com as referencias em EventifyLab/Refs (4 pngs
+     de mockup): tipografia bem mais ousada, preco gigante em peso 800,
+     resto do texto em Grift Light (300) e bem maior que antes, icone de
+     relogio com fundo teal solido (nao mais o soft) */
+  .pack-card .head{padding:28px 24px 30px;background:linear-gradient(152deg,#3f9ea5 0%,#2e767a 24%,#122f2e 64%,#081c1b 100%);}
+  .pack-card .head .lockup{display:flex;align-items:center;gap:12px;}
+  .pack-card .head .brand-logo{height:20px;width:auto;display:block;}
+  .pack-card .head .sep{width:1px;height:18px;background:rgba(255,255,255,.4);}
+  .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:1.7rem;text-transform:uppercase;letter-spacing:.04em;color:#fff;}
+  .pack-card .body{padding:24px;display:flex;flex-direction:column;gap:24px;flex:1;}
+  .pack-card .feat{margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .pack-card .feat li{list-style:none;display:flex;gap:10px;font-family:var(--disp);font-weight:300;font-size:1.08rem;color:var(--ink);line-height:1.35;}
+  .pack-card .feat li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:9px;}
+  .pack-card .price-row{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);}
+  .pack-card .price{font-family:var(--disp);font-weight:800;font-size:2.5rem;color:var(--ink);line-height:1;}
+  .pack-card .price .unit{font-size:1.1rem;font-weight:300;color:var(--ink);margin-left:8px;}
+  .pack-card .price.consult{font-size:1.4rem;font-family:var(--disp);font-weight:300;color:var(--ink);}
+  .pack-card .pricelabel{font-size:1.3rem;font-weight:300;color:var(--ink);margin-bottom:8px;}
+  .pack-card .extra{margin-top:10px;font-size:1.1rem;font-weight:300;color:var(--ink);}
+  .pack-card .duration{margin-top:18px;display:flex;align-items:center;gap:12px;font-family:var(--disp);font-weight:300;font-size:1.15rem;color:var(--ink);}
+  .pack-card .duration .clk{width:28px;height:28px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;color:var(--on-teal);flex-shrink:0;}
+  .pack-card .strip{padding:16px 24px;background:#edefea;color:#081c1b;font-family:var(--disp);font-size:1.05rem;font-weight:300;}
+  .pack-card .strip .strip-price{font-weight:800;font-size:1.5rem;margin-left:6px;}
   .pack-nav{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:14px;}
   .pack-nav-buttons{display:flex;gap:10px;}
   .pack-nav button{width:38px;height:38px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--r-sm);transition:border-color .25s ease,color .25s ease;}
