@@ -125,8 +125,8 @@
   .closer{margin-top:28px;color:var(--ink-dim);font-size:1rem;max-width:62ch;}
 
   /* modulos: grade assimetrica tipo bento — Quiz e Roleta (is-lg) ganham
-     cartao maior e um filete teal no topo, os outros tres dividem a
-     linha de baixo em partes iguais */
+     cartao maior (so tamanho, sem cor diferente), os outros tres dividem
+     a linha de baixo em partes iguais */
   .mech-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px;}
   @media(min-width:760px){
     .mech-grid{grid-template-columns:repeat(6,1fr);}
@@ -134,8 +134,7 @@
     .mech-card{grid-column:span 2;}
   }
   .mech-card{position:relative;background:var(--bg);padding:26px 24px;display:flex;flex-direction:column;gap:10px;}
-  .mech-card.is-lg{background:var(--bg-raised);padding:34px 30px;gap:14px;}
-  .mech-card.is-lg::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--teal);}
+  .mech-card.is-lg{padding:34px 30px;gap:14px;}
   .mech-card h3{font-size:1.05rem;}
   .mech-card.is-lg h3{font-size:1.45rem;}
   .mech-card p{color:var(--ink-dim);font-size:.92rem;line-height:1.5;max-width:40ch;}
