@@ -166,7 +166,7 @@
   .pack-carousel::-webkit-scrollbar{height:6px;}
   .pack-carousel::-webkit-scrollbar-thumb{background:var(--teal-deep);}
   .pack-carousel::-webkit-scrollbar-track{background:transparent;}
-  .pack-card{scroll-snap-align:start;flex:0 0 auto;width:82vw;max-width:300px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg-raised);}
+  .pack-card{container-type:inline-size;scroll-snap-align:start;flex:0 0 auto;width:82vw;max-width:300px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--bg-raised);}
   @media(min-width:640px){.pack-card{width:300px;}}
   /* a partir de 1024px sempre cabem exatamente 3 cartoes na largura do
      carrossel (2 gaps de 20px entre eles); o 4o (Replay) fica pra fora,
@@ -179,11 +179,15 @@
   /* gradiente identico ao Gradient.svg (EventifyLab/Gradient.svg): mesmos
      9 stops e mesmo angulo, calculado a partir do vetor do linearGradient
      original (x1,y1 964.62,701.34 -> x2,y2 158.35,-104.93 = 315deg) */
-  .pack-card .head{padding:28px 24px 30px;background:linear-gradient(315deg,#3f9ea5 0%,#3c969d 2%,#2e767a 10%,#225a5c 18%,#184344 28%,#113132 39%,#0b2524 51%,#081e1d 67%,#081c1b 100%);}
-  .pack-card .head .lockup{display:flex;align-items:center;gap:12px;}
-  .pack-card .head .brand-logo{height:26px;width:auto;display:block;}
-  .pack-card .head .sep{width:1px;height:18px;background:rgba(255,255,255,.4);}
-  .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:1.7rem;text-transform:uppercase;letter-spacing:.04em;color:#fff;}
+  .pack-card .head{padding:28px 24px 30px;background:linear-gradient(315deg,#3f9ea5 0%,#3c969d 2%,#2e767a 10%,#225a5c 18%,#184344 28%,#113132 39%,#0b2524 51%,#081e1d 67%,#081c1b 100%);overflow:hidden;}
+  /* logo/separador/tier escalam com a largura real do cartao (container
+     query), nao com a viewport — assim continuam cabendo mesmo quando o
+     card fica estreito (ex: layout de 3 colunas logo apos o breakpoint
+     de 1024px), sem depender de "quantas colunas" o layout tem no momento */
+  .pack-card .head .lockup{display:flex;align-items:center;gap:clamp(6px,2.5cqi,12px);min-width:0;}
+  .pack-card .head .brand-logo{height:clamp(15px,5.5cqi,26px);width:auto;display:block;flex-shrink:0;}
+  .pack-card .head .sep{width:1px;height:clamp(12px,4.5cqi,18px);background:rgba(255,255,255,.4);flex-shrink:0;}
+  .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:clamp(.95rem,6.5cqi,1.7rem);text-transform:uppercase;letter-spacing:.04em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
   .pack-card .body{padding:24px;display:flex;flex-direction:column;gap:24px;flex:1;}
   .pack-card .feat{margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
   .pack-card .feat li{list-style:none;display:flex;gap:10px;font-family:var(--disp);font-weight:300;font-size:1.08rem;color:var(--ink);line-height:1.35;}
