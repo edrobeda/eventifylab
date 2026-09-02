@@ -110,9 +110,22 @@
   .step h3{margin-top:20px;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em;}
   .step p{margin-top:12px;color:var(--ink-dim);font-size:.95rem;max-width:36ch;}
 
-  .banner{text-align:center;}
-  .banner .k{font-family:var(--disp);font-weight:700;font-size:clamp(1.3rem,3vw,2.1rem);letter-spacing:.06em;color:var(--teal);text-transform:uppercase;}
-  .banner p{margin-top:14px;font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--ink);font-weight:300;}
+  /* suporte remoto — cartao destacado, com icone, indicador "sempre
+     disponivel" pulsando e leve glow radial de fundo. empilha no mobile,
+     vira linha (icone + texto) a partir de 760px */
+  .support-banner{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;border:1px solid var(--line-strong);background:var(--bg-raised);padding:40px 32px;}
+  @media(min-width:760px){.support-banner{flex-direction:row;text-align:left;padding:48px 56px;gap:36px;}}
+  .support-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 12% 15%,rgba(63,158,165,.16),transparent 60%);pointer-events:none;}
+  .support-banner-icon{position:relative;z-index:1;flex-shrink:0;width:76px;height:76px;border-radius:50%;border:1px solid var(--teal);background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center;}
+  .support-banner-text{position:relative;z-index:1;}
+  .support-banner-status{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+  .pulse-dot{position:relative;width:7px;height:7px;border-radius:50%;background:var(--teal);}
+  .pulse-dot::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--teal);animation:pulseDot 1.8s ease-out infinite;}
+  @keyframes pulseDot{0%{transform:scale(.5);opacity:.8;}100%{transform:scale(2.4);opacity:0;}}
+  @media(prefers-reduced-motion:reduce){.pulse-dot::before{animation:none;}}
+  .support-banner h2{font-size:clamp(1.6rem,3vw,2.2rem);}
+  .support-banner-text p{margin-top:12px;color:var(--ink-dim);font-size:1.05rem;max-width:46ch;}
+  @media(min-width:760px){.support-banner-text p{margin-inline:0;}}
 
   code.dev{font-family:var(--disp);font-weight:500;font-size:.7rem;color:var(--amber);background:var(--amber-soft);border:1px solid rgba(231,178,90,.3);padding:2px 6px;border-radius:2px;}
 
