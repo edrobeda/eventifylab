@@ -176,9 +176,12 @@
      de mockup): tipografia bem mais ousada, preco gigante em peso 800,
      resto do texto em Grift Light (300) e bem maior que antes, icone de
      relogio com fundo teal solido (nao mais o soft) */
-  .pack-card .head{padding:28px 24px 30px;background:linear-gradient(152deg,#3f9ea5 0%,#2e767a 24%,#122f2e 64%,#081c1b 100%);}
+  /* gradiente identico ao Gradient.svg (EventifyLab/Gradient.svg): mesmos
+     9 stops e mesmo angulo, calculado a partir do vetor do linearGradient
+     original (x1,y1 964.62,701.34 -> x2,y2 158.35,-104.93 = 315deg) */
+  .pack-card .head{padding:28px 24px 30px;background:linear-gradient(315deg,#3f9ea5 0%,#3c969d 2%,#2e767a 10%,#225a5c 18%,#184344 28%,#113132 39%,#0b2524 51%,#081e1d 67%,#081c1b 100%);}
   .pack-card .head .lockup{display:flex;align-items:center;gap:12px;}
-  .pack-card .head .brand-logo{height:20px;width:auto;display:block;}
+  .pack-card .head .brand-logo{height:26px;width:auto;display:block;}
   .pack-card .head .sep{width:1px;height:18px;background:rgba(255,255,255,.4);}
   .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:1.7rem;text-transform:uppercase;letter-spacing:.04em;color:#fff;}
   .pack-card .body{padding:24px;display:flex;flex-direction:column;gap:24px;flex:1;}
