@@ -311,7 +311,7 @@ footer.site{padding-block:56px 32px;}
 /* ---------------- páginas internas: /parceiros e /privacidade ---------------- */
 
 /* topo de página interna (sem hero de tela cheia) */
-.page-top{padding-top:56px;}
+.page-top{padding-top:56px;padding-bottom:56px;}
 @media(min-width:1024px){.page-top{padding-top:80px;}}
 .page-top h1{font-size:clamp(2rem,4.2vw,3.2rem);max-width:20ch;}
 .page-top .lede{margin-top:20px;color:var(--ink-dim);font-weight:300;font-size:1.08rem;max-width:60ch;}
@@ -350,11 +350,11 @@ footer.site{padding-block:56px 32px;}
 .legal-banner strong{color:var(--amber);}
 
 /* corpo em prosa da política de privacidade */
-.legal-body{max-width:74ch;margin-top:8px;margin-inline:0;}
+.legal-body{margin-top:8px;}
 .legal-body h2{margin-top:48px;font-size:1.4rem;}
 .legal-body h2:first-child{margin-top:0;}
-.legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
-.legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;}
+.legal-body p{margin-top:14px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;max-width:74ch;}
+.legal-body ul{margin:14px 0 0;padding-left:22px;color:var(--ink-dim);font-size:.98rem;line-height:1.65;max-width:74ch;}
 .legal-body li{margin-top:6px;}
 .legal-body strong{color:var(--ink);}
 
