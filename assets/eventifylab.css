@@ -123,7 +123,7 @@
   .pulse-dot::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--teal);animation:pulseDot 1.8s ease-out infinite;}
   @keyframes pulseDot{0%{transform:scale(.5);opacity:.8;}100%{transform:scale(2.4);opacity:0;}}
   @media(prefers-reduced-motion:reduce){.pulse-dot::before{animation:none;}}
-  .support-banner h2{font-size:clamp(1.6rem,3vw,2.2rem);}
+  .support-banner h2{font-size:clamp(1.8rem,3.4vw,2.5rem);}
   .support-banner-text p{margin-top:12px;color:var(--ink-dim);font-size:1.05rem;max-width:46ch;}
   @media(min-width:760px){.support-banner-text p{margin-inline:0;}}
 
