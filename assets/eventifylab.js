@@ -162,4 +162,21 @@
       });
       setProduct('eventifylab');
     }
+
+    // faq em acordeao — sem JS, a resposta fica visivel (progressive
+    // enhancement); com JS, comeca fechada e alterna no clique
+    document.querySelectorAll('.qa').forEach(function(item, i){
+      var btn = item.querySelector('.q');
+      var answer = item.querySelector('.a');
+      if(!btn || !answer){ return; }
+      var id = 'qa-answer-' + i;
+      answer.id = id;
+      btn.setAttribute('aria-controls', id);
+      btn.setAttribute('aria-expanded', 'false');
+      item.classList.add('is-collapsed');
+      btn.addEventListener('click', function(){
+        var collapsed = item.classList.toggle('is-collapsed');
+        btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      });
+    });
   })();
