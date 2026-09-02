@@ -106,6 +106,7 @@
   .stat{position:relative;background:var(--bg);padding:30px 24px;}
   .stat .num{font-family:var(--disp);font-weight:700;font-size:clamp(2.3rem,4.4vw,3.4rem);color:var(--teal);font-variant-numeric:tabular-nums;}
   .stat .lbl{margin-top:8px;font-size:14px;color:var(--ink-dim);font-weight:400;}
+  #agencias .stat .lbl{line-height:1.3;}
 
   .how-intro{max-width:70ch;font-size:1.1rem;color:var(--ink-dim);font-weight:300;margin-top:18px;}
   .how-intro strong{color:var(--ink);font-weight:600;}
