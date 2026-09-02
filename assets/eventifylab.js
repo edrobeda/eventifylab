@@ -75,18 +75,12 @@
     // header shrink + scroll progress bar, rAF-throttled
     var progressBar = document.getElementById('scrollProgress');
     var siteHeader = document.getElementById('siteHeader');
-    var heroDiagram = document.querySelector('.hero-diagram');
     var ticking = false;
     function onScroll(){
       var st = window.scrollY || document.documentElement.scrollTop;
       var docH = document.documentElement.scrollHeight - window.innerHeight;
       if(progressBar){ progressBar.style.width = (docH > 0 ? (st / docH * 100) : 0) + '%'; }
       if(siteHeader){ siteHeader.classList.toggle('scrolled', st > 40); }
-      if(heroDiagram && !reducedMotion && hoverCapable){
-        var r = heroDiagram.getBoundingClientRect();
-        var offset = Math.max(-12, Math.min(12, (window.innerHeight - r.top) * 0.015 - 8));
-        heroDiagram.style.transform = 'translateY(' + offset + 'px)';
-      }
       ticking = false;
     }
     window.addEventListener('scroll', function(){
