@@ -190,17 +190,17 @@
   .pack-card .head .tier{font-family:var(--disp);font-weight:300;font-size:clamp(.95rem,6.5cqi,1.7rem);text-transform:uppercase;letter-spacing:.04em;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
   .pack-card .body{padding:24px;display:flex;flex-direction:column;gap:24px;flex:1;}
   .pack-card .feat{margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
-  .pack-card .feat li{list-style:none;display:flex;gap:10px;font-family:var(--disp);font-weight:300;font-size:1.08rem;color:var(--ink);line-height:1.35;}
+  .pack-card .feat li{list-style:none;display:flex;gap:10px;font-family:var(--disp);font-weight:300;font-size:1.08rem;color:var(--ink);line-height:1.15;}
   .pack-card .feat li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:9px;}
   .pack-card .price-row{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);}
-  .pack-card .price{font-family:var(--disp);font-weight:800;font-size:2.5rem;color:var(--ink);line-height:1;}
+  .pack-card .price{font-family:var(--disp);font-weight:800;font-size:2.9rem;color:var(--ink);line-height:1;}
   .pack-card .price .unit{font-size:1.1rem;font-weight:300;color:var(--ink);margin-left:8px;}
-  .pack-card .price.consult{font-size:1.4rem;font-family:var(--disp);font-weight:300;color:var(--ink);}
+  .pack-card .price.consult{font-size:1.6rem;font-family:var(--disp);font-weight:300;color:var(--ink);}
   .pack-card .pricelabel{font-size:1.3rem;font-weight:300;color:var(--ink);margin-bottom:8px;}
   .pack-card .extra{margin-top:10px;font-size:1.1rem;font-weight:300;color:var(--ink);}
   .pack-card .duration{margin-top:18px;display:flex;align-items:center;gap:12px;font-family:var(--disp);font-weight:300;font-size:1.15rem;color:var(--ink);}
   .pack-card .duration .clk{width:28px;height:28px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;color:var(--on-teal);flex-shrink:0;}
-  .pack-card .strip{padding:16px 24px;background:#edefea;color:#081c1b;font-family:var(--disp);font-size:1.05rem;font-weight:300;}
+  .pack-card .strip{padding:16px 24px;background:#edefea;color:#081c1b;font-family:var(--disp);font-size:1.05rem;font-weight:300;text-align:right;}
   .pack-card .strip .strip-price{font-weight:800;font-size:1.5rem;margin-left:6px;}
   .pack-nav{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:14px;}
   .pack-nav-buttons{display:flex;gap:10px;}
