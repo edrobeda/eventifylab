@@ -231,7 +231,7 @@
   .pack-card .strip .strip-price{font-weight:800;font-size:1.5rem;margin-left:6px;}
   /* strip agora e sempre um link pro whatsapp, mesmo texto nos 4 cards */
   .pack-card a.strip{display:block;text-decoration:none;transition:background-color .25s ease;}
-  .pack-card .strip:hover{background:#e0e3db;}
+  .pack-card .strip:hover{background:#e0e3db;text-decoration:underline;}
   /* "ideal para" ocupa o lugar do price-row (escondido), mesmo espacamento */
   .pack-card .ideal-for{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);}
   .pack-card .ideal-for .label{display:block;font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
