@@ -109,7 +109,7 @@
   .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
   @media(min-width:768px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
   .stat{position:relative;background:var(--bg);padding:30px 24px;}
-  .stat .num{font-family:var(--disp);font-weight:700;font-size:clamp(2.3rem,4.4vw,3.4rem);color:var(--teal);font-variant-numeric:tabular-nums;}
+  .stat .num{font-family:var(--disp);font-weight:700;font-size:clamp(2.3rem,4.4vw,3.4rem);color:var(--teal);font-variant-numeric:tabular-nums;line-height:1.05;}
   .stat .lbl{margin-top:8px;font-size:14px;color:var(--ink-dim);font-weight:400;}
   #agencias .stat .lbl{line-height:1.3;}
 
@@ -330,6 +330,17 @@ footer.site{padding-block:56px 32px;}
 @media(min-width:1024px){.page-top{padding-top:80px;}}
 .page-top h1{font-size:clamp(2rem,4.2vw,3.2rem);max-width:20ch;}
 .page-top .lede{margin-top:20px;color:var(--ink-dim);font-weight:300;font-size:1.08rem;max-width:60ch;}
+
+/* hero em video (usado em /parceiros) — video de fundo full-bleed com
+   mascara de escurecimento, texto por cima em .wrap normal (com z-index).
+   o .page-top continua dando o padding vertical, o video/mascara cobrem
+   a secao inteira (position:absolute;inset:0 usa a padding-box do
+   ancestral relative mais proximo, que e o proprio <section>) */
+#home.hero-video{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:clamp(420px,50vw,600px);}
+.hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.hero-video-mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,28,27,.6) 0%,rgba(8,28,27,.8) 55%,rgba(8,28,27,.94) 100%);z-index:0;}
+#home.hero-video > .wrap{position:relative;z-index:1;}
+@media(max-width:640px){#home.hero-video{min-height:380px;}}
 
 /* variante de 4 colunas para .steps (usado no fluxo de parceiros) */
 @media(min-width:900px){.steps.steps-4{grid-template-columns:repeat(4,1fr);}}

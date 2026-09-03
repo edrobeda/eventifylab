@@ -23,6 +23,12 @@
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var hoverCapable = window.matchMedia('(hover: hover)').matches;
 
+    // hero em video (/parceiros) — toca via JS (nao usa o atributo
+    // autoplay) pra nao acionar o motivo de acessibilidade contra
+    // autoplay em markup; quem pede menos movimento fica parado no poster
+    var heroVideo = document.querySelector('.hero-video-bg');
+    if(heroVideo && !reducedMotion){ heroVideo.play().catch(function(){}); }
+
     function animateCount(el){
       var text = el.textContent.trim();
       var match = text.match(/^([+]?)(\d[\d.,]*)(.*)$/);
