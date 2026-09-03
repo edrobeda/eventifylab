@@ -88,13 +88,29 @@
     }, {passive:true});
     onScroll();
 
-    // hero cursor spotlight
+    // hero cursor spotlight + circulo magnetico (segue o mouse com um
+    // deslocamento sutil, puxando na direcao do cursor, mais forte perto
+    // do centro do circulo)
     var heroEl = document.querySelector('.hero');
+    var heroCircle = document.querySelector('.hero-bleed-circle');
     if(heroEl && hoverCapable){
       heroEl.addEventListener('mousemove', function(e){
         var r = heroEl.getBoundingClientRect();
         heroEl.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
         heroEl.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        if(heroCircle && !reducedMotion){
+          var cr = heroCircle.getBoundingClientRect();
+          var dx = e.clientX - (cr.left + cr.width / 2);
+          var dy = e.clientY - (cr.top + cr.height / 2);
+          heroCircle.style.setProperty('--magx', Math.max(-24, Math.min(24, dx * 0.03)) + 'px');
+          heroCircle.style.setProperty('--magy', Math.max(-24, Math.min(24, dy * 0.03)) + 'px');
+        }
+      });
+      heroEl.addEventListener('mouseleave', function(){
+        if(heroCircle){
+          heroCircle.style.setProperty('--magx', '0px');
+          heroCircle.style.setProperty('--magy', '0px');
+        }
       });
     }
 
