@@ -142,6 +142,10 @@
     if(carousel){
       var dragging = false, dragStartX = 0, dragScrollStart = 0;
       carousel.addEventListener('pointerdown', function(e){
+        // se o pointerdown comecou em cima de um link (ex.: "Consulte
+        // valores"), nao captura o ponteiro — senao o clique nunca chega
+        // no <a>, porque o mouseup/click sao redirecionados pro carousel
+        if(e.target.closest('a')){ return; }
         dragging = true;
         carousel.setPointerCapture(e.pointerId);
         dragStartX = e.clientX;
