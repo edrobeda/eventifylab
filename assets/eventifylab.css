@@ -339,7 +339,12 @@ footer.site{padding-block:56px 32px;}
 #home.hero-video{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:clamp(420px,50vw,600px);}
 .hero-video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 .hero-video-mask{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,28,27,.6) 0%,rgba(8,28,27,.8) 55%,rgba(8,28,27,.94) 100%);z-index:0;}
-#home.hero-video > .wrap{position:relative;z-index:1;}
+/* width:100% forca o .wrap a esticar no eixo cruzado do flex column;
+   sem isso, o margin-inline:auto do .wrap (que so deveria centralizar o
+   container no max-width) vira sizing por fit-content dentro do flex, e
+   o texto acaba visualmente centralizado em vez de alinhado com o resto
+   da pagina */
+#home.hero-video > .wrap{position:relative;z-index:1;width:100%;}
 @media(max-width:640px){#home.hero-video{min-height:380px;}}
 
 /* variante de 4 colunas para .steps (usado no fluxo de parceiros) */
