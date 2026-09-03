@@ -229,6 +229,13 @@
   .pack-card .duration .clk{width:28px;height:28px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;color:var(--on-teal);flex-shrink:0;}
   .pack-card .strip{padding:16px 24px;background:#edefea;color:#081c1b;font-family:var(--disp);font-size:1.05rem;font-weight:300;text-align:right;}
   .pack-card .strip .strip-price{font-weight:800;font-size:1.5rem;margin-left:6px;}
+  /* strip agora e sempre um link pro whatsapp, mesmo texto nos 4 cards */
+  .pack-card a.strip{display:block;text-decoration:none;transition:background-color .25s ease;}
+  .pack-card .strip:hover{background:#e0e3db;}
+  /* "ideal para" ocupa o lugar do price-row (escondido), mesmo espacamento */
+  .pack-card .ideal-for{margin-top:auto;padding-top:20px;border-top:1px solid var(--line);}
+  .pack-card .ideal-for .label{display:block;font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .pack-card .ideal-for p{font-size:1rem;color:var(--ink-dim);line-height:1.5;}
   .pack-nav{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:14px;}
   .pack-nav-buttons{display:flex;gap:10px;}
   .pack-nav button{width:38px;height:38px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:var(--r-sm);transition:border-color .25s ease,color .25s ease;}
