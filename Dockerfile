@@ -3,7 +3,7 @@
 FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY index.html llms.txt pricing.md robots.txt sitemap.xml /usr/share/nginx/html/
+COPY index.html llms.txt robots.txt sitemap.xml /usr/share/nginx/html/
 COPY assets /usr/share/nginx/html/assets
 COPY parceiros /usr/share/nginx/html/parceiros
 COPY privacidade /usr/share/nginx/html/privacidade
