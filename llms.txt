@@ -14,12 +14,12 @@ Cadastro pelo celular (QR code ou link) ou pelo totem. Interação no estande co
 - Raspadinha: revelação de prêmio na hora
 - Pesquisa de opinião: coleta de dado qualitativo em troca de brinde
 
-## Pacotes e preços (BRL, 1 dia de evento)
-- Flash — R$ 2.270 (3 dias: R$ 3.470). Template padrão, cadastro + quiz + roleta de prêmios, ativado em 24h.
-- Studio — R$ 5.410 (3 dias: R$ 6.610). Identidade visual completa, cadastro e fluxo de participação personalizáveis, mais de 5 módulos disponíveis, 15 dias úteis.
-- Signature — a partir de R$ 6.610, consulte valores. Pesquisa e desenvolvimento exclusivos, mecânica de jogo sob medida, +25 dias úteis.
-- Replay — R$ 2.270 (3 dias: R$ 3.470). Reativação de um pacote Studio ou Signature já entregue antes, para novo evento, nova data ou outra marca do mesmo grupo.
-Todo pacote soma +R$ 600 por dia adicional de evento.
+## Pacotes
+- Flash: template padrão, cadastro + quiz + roleta de prêmios, ativado em 24h. Ideal para ações promocionais de curta duração, orçamento enxuto, decisão de última hora.
+- Studio: identidade visual completa, cadastro e fluxo de participação personalizáveis, mais de 5 módulos disponíveis, 15 dias úteis. Ideal para feiras, congressos, captação de leads, ativações promocionais com identidade da marca.
+- Signature: pesquisa e desenvolvimento exclusivos, mecânica de jogo sob medida, +25 dias úteis. Ideal para grandes lançamentos, ativações premium, marcas que querem diferenciação real.
+- Replay: reativação de um pacote Studio ou Signature já entregue antes, para novo evento, nova data ou outra marca do mesmo grupo. Ideal para cliente recorrente, reativação de jogo já desenvolvido.
+Valores sob consulta, pelo WhatsApp ou e-mail abaixo.
 
 ## Relatório pós-evento
 Total de cadastros, prêmios distribuídos, taxa de conclusão do jogo, taxa de aceite de marketing, perfil dos participantes, desempenho no quiz e horário de pico de movimento. Entregue formatado, não como export bruto de planilha.
@@ -32,5 +32,3 @@ WhatsApp: +55 19 99252-0470
 E-mail: contato@eventifylab.com
 Site: https://eventifylab.com/
 
-## Detalhes de preço em formato de dados
-Ver /pricing.md
