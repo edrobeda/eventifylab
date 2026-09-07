@@ -187,6 +187,15 @@
     .reveal.in .reason-grid .reason-card:hover{transform:none;}
   }
 
+  /* linha de produto (Game vs Vitrine nos pacotes) */
+  .line-label{display:inline-block;font-family:var(--disp);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:20px;margin-top:36px;}
+  #pacotes .line-label:first-child{margin-top:0;}
+
+  /* grid estatico do Vitrine nos pacotes — 2 colunas, sem JS de carrossel */
+  .vitrine-pack-grid{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px;}
+  @media(min-width:640px){.vitrine-pack-grid{grid-template-columns:1fr 1fr;}}
+  .vitrine-pack-grid .pack-card{width:auto;max-width:none;}
+
   /* pacotes — carrossel de cards */
   .pack-carousel-wrap{margin-top:8px;}
   .pack-carousel{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 14px;scrollbar-width:thin;scrollbar-color:var(--teal-deep) transparent;-webkit-overflow-scrolling:touch;}

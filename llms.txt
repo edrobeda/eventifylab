@@ -4,6 +4,8 @@
 
 EventifyLab desenha e opera ativações de gamificação para estandes de feira. Quatro anos de mercado, mais de 20 feiras realizadas, mais de 500 horas de interação e mais de 28 mil leads qualificados captados.
 
+A empresa entrega duas linhas de software para o mesmo totem de estande: Game (jogo com cadastro e captação de leads, descrito abaixo) e Vitrine (catálogo interativo sem cadastro, com relatório de acessos em tempo real). O totem físico é sempre do cliente ou da montadora; a EventifyLab entrega só o software.
+
 ## Como funciona
 Cadastro pelo celular (QR code ou link) ou pelo totem. Interação no estande com jogos que educam o participante já cadastrado. Recompensa com distribuição de brindes integrada ao fluxo. Sem instalação e sem operação do lado do cliente.
 
@@ -19,6 +21,8 @@ Cadastro pelo celular (QR code ou link) ou pelo totem. Interação no estande co
 - Studio: identidade visual completa, cadastro e fluxo de participação personalizáveis, mais de 5 módulos disponíveis, 15 dias úteis. Ideal para feiras, congressos, captação de leads, ativações promocionais com identidade da marca.
 - Signature: pesquisa e desenvolvimento exclusivos, mecânica de jogo sob medida, +25 dias úteis. Ideal para grandes lançamentos, ativações premium, marcas que querem diferenciação real.
 - Replay: reativação de um pacote Studio ou Signature já entregue antes, para novo evento, nova data ou outra marca do mesmo grupo. Ideal para cliente recorrente, reativação de jogo já desenvolvido.
+- Vitrine: catálogo, vídeos e fichas técnicas no totem, sem cadastro e sem jogo, com QR code por produto e relatório de acessos em tempo real, 15 dias úteis. Ideal para portfólio grande, produto complexo de explicar, ou cliente que não pode coletar dado.
+- Vitrine Replay: reativação de um Vitrine já entregue, para novo evento ou catálogo atualizado, 24h. Ideal para cliente recorrente com catálogo atualizado.
 Valores sob consulta, pelo WhatsApp ou e-mail abaixo.
 
 ## Relatório pós-evento
