@@ -7,6 +7,7 @@ COPY index.html llms.txt robots.txt sitemap.xml /usr/share/nginx/html/
 COPY assets /usr/share/nginx/html/assets
 COPY parceiros /usr/share/nginx/html/parceiros
 COPY privacidade /usr/share/nginx/html/privacidade
+COPY links /usr/share/nginx/html/links
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

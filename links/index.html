@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventifyLab · Links</title>
+<meta name="description" content="Todos os links da EventifyLab em um só lugar.">
+<link rel="canonical" href="https://eventifylab.com/links">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#081c1b">
+<meta name="color-scheme" content="dark">
+
+<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="../assets/icons/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EventifyLab">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://eventifylab.com/links">
+<meta property="og:title" content="EventifyLab · Links">
+<meta property="og:description" content="Todos os links da EventifyLab em um só lugar.">
+
+<link rel="preload" href="../assets/fontes/Grift-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/eventifylab.css">
+
+<style>
+  /* pagina de linktree — nao usa o header/nav do site (nao faz sentido pra
+     esse formato), so reaproveita os tokens/fontes/cores de eventifylab.css
+     pra manter a mesma identidade visual */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 56px 20px;
+  }
+  .links-logo { width: 170px; margin-bottom: 40px; }
+  .links-list {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .link-item {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .link-icon { width: 20px; height: 20px; border-radius: 4px; object-fit: cover; }
+  #links-state {
+    color: var(--ink-dim);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  .links-back {
+    margin-top: 48px;
+    font-family: var(--disp);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<a href="/" aria-label="EventifyLab, ir para o início">
+  <img class="links-logo" src="../assets/logos/logo-eventifylab-escuro.svg" alt="EventifyLab">
+</a>
+
+<div id="links-state">Carregando...</div>
+<div class="links-list" id="links-list"></div>
+
+<a class="links-back" href="/">← voltar pro site</a>
+
+<script>
+  // conteudo configurado no Manager (manager.eventifylab.com, aba "Links")
+  // — leitura publica, sem chave de API (ver routes/linksPublic.js no
+  // manager-api). CORS ja liberado globalmente la (app.use(cors())).
+  fetch('https://manager.eventifylab.com/api/links-public')
+    .then((r) => r.json())
+    .then((data) => {
+      const state = document.getElementById('links-state');
+      const list = document.getElementById('links-list');
+      const links = (data && data.links) || [];
+
+      if (links.length === 0) {
+        state.textContent = 'Nenhum link disponível no momento.';
+        return;
+      }
+
+      state.remove();
+      links.forEach((link) => {
+        const a = document.createElement('a');
+        a.className = 'btn btn-primary link-item';
+        a.href = link.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        if (link.icon_url) {
+          const img = document.createElement('img');
+          img.className = 'link-icon';
+          img.src = link.icon_url;
+          img.alt = '';
+          a.appendChild(img);
+        }
+        a.appendChild(document.createTextNode(link.label));
+        list.appendChild(a);
+      });
+    })
+    .catch(() => {
+      document.getElementById('links-state').textContent = 'Não foi possível carregar os links agora.';
+    });
+</script>
+
+</body>
+</html>
