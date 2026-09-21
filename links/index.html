@@ -76,6 +76,34 @@
 <a class="links-back" href="/">← voltar pro site</a>
 
 <script>
+  // tracking de navegacao (ver routes/linksTrack.js no manager-api) —
+  // sessao_id agrupa visualizacao + cliques da MESMA visita, gerado uma vez
+  // por aba (sessionStorage, nao persiste entre visitas diferentes de
+  // proposito — cada visita e uma linha nova no relatorio).
+  function getSessionId() {
+    var KEY = 'eventifylab_links_sessao';
+    var id = sessionStorage.getItem(KEY);
+    if (!id) {
+      id = (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : (Date.now().toString(36) + Math.random().toString(36).slice(2));
+      sessionStorage.setItem(KEY, id);
+    }
+    return id;
+  }
+
+  function track(tipo, referencia) {
+    var payload = JSON.stringify({ tipo: tipo, referencia: referencia, sessao_id: getSessionId() });
+    var url = 'https://manager.eventifylab.com/api/links-track';
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+    } else {
+      fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(function () {});
+    }
+  }
+
+  track('pagina', 'view');
+
   // conteudo configurado no Manager (manager.eventifylab.com, aba "Links")
   // — leitura publica, sem chave de API (ver routes/linksPublic.js no
   // manager-api). CORS ja liberado globalmente la (app.use(cors())).
@@ -106,6 +134,10 @@
           a.appendChild(img);
         }
         a.appendChild(document.createTextNode(link.label));
+        // link abre em nova aba (target="_blank"), entao a pagina atual
+        // nunca descarrega — nao precisa de sendBeacon por seguranca aqui,
+        // mas usamos do mesmo jeito (mais barato/confiavel que fetch comum)
+        a.addEventListener('click', () => track('clique', String(link.id)));
         list.appendChild(a);
       });
     })
